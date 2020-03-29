@@ -1,0 +1,83 @@
+{
+    "vlans": [
+        {
+            "name": "VLAN-658",
+            "cidr": "192.168.1.1/27",
+            "description": "ala ma kota"
+        },
+        {
+            "name": "VLAN-701",
+            "cidr": "192.168.2.1/27",
+            "description": "ala ma kota"
+        }
+    ],
+    "firewall-rules": [
+        {
+            "name": "a to b",
+            "source": {
+                "vlan": null,
+                "ip_v4": null,
+                "cidr": "192.168.1.1/27",
+                "ports": [
+                    "8080"
+                ]
+            },
+            "destination": {
+                "vlan": null,
+                "ip_v4": null,
+                "cidr": "192.168.1.1/27",
+                "ports": [
+                    "any"
+                ]
+            }
+        }
+    ],
+    "machines": [
+        {
+            "name": "oc-ec-01",
+            "group": "testGroup",
+            "description": "ala ma kota, psa i królika",
+            "vcpu": 12,
+            "memory": "16",
+            "network-interfaces": [
+                {
+                    "name": "ens102",
+                    "ip_v4": "",
+                    "netMask": "",
+                    "cidr": ""
+                }
+            ],
+            "volumes": [
+                {
+                    "name": "some nice name",
+                    "size": 156,
+                    "mount": "/data"
+                }
+            ]
+        }
+    ],
+    "machine-templates": [
+        {
+            "name": "testGroup",
+            "vcpu": 12,
+            "memory": "16",
+            "name-mask": "oc-ec-{number:DD}",
+            "description": "ala ma kota, psa i królika",
+            "network-interfaces": [
+                {
+                    "name": "ens102",
+                    "ip_v4": "",
+                    "netMask": "",
+                    "cidr": ""
+                }
+            ],
+            "volumes": [
+                {
+                    "name": "some nice name",
+                    "size": 156,
+                    "mount": "/data"
+                }
+            ]
+        }
+    ]
+}

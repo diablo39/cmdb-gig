@@ -1,0 +1,25 @@
+<div class="col-lg-12">
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">VLAN</h5>
+            <table class="mb-0 table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>CIDR</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#items}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{cidr}}</td>
+                        <td>{{description}}</td>
+                    </tr>
+                    {{/items}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
