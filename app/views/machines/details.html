@@ -2,7 +2,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-network text-success">
+                <i class="fa fa-cube text-success">
                 </i>
             </div>
             <div>{{name}}</div>
@@ -10,7 +10,7 @@
         </div>
         <div class="page-title-actions">
             <button type="button" title="Go Back" class="btn-shadow mr-3 btn btn-info"
-                onclick="window.location='#/vlans'">
+                onclick="window.location='#/machines'">
                 <i class="fa fa-arrow-left"></i> To List
             </button>
         </div>
@@ -23,21 +23,17 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="position-relative row form-group">
-                    <label for="exampleEmail" class="col-sm-2 col-form-label">Name</label>
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">VLAN</label>
                     <div class="col-sm-10">{{name}}</div>
                 </div>
-                <div class="position-relative row form-group">
-                    <label for="examplePassword" class="col-sm-2 col-form-label">Environment</label>
-                    <div class="col-sm-10"><a href="#/env/{{env}}">{{env}}</a></div>
-                </div>
-                <div class="position-relative row form-group">
+                <!-- <div class="position-relative row form-group">
                     <label for="examplePassword" class="col-sm-2 col-form-label">CIDR</label>
                     <div class="col-sm-10">{{cidr}}</div>
                 </div>
                 <div class="position-relative row form-group">
                     <label for="exampleSelect" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">{{description}}</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -2,10 +2,10 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-network text-success">
+                <i class="fa fas fa-sort text-success">
                 </i>
             </div>
-            <div>List of VLANs</div>
+            <div>List of environments</div>
         </div>
     </div>
 </div>
@@ -13,22 +13,18 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">VLAN</h5>
+                <h5 class="card-title">Environments</h5>
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Environment</th>
-                            <th>CIDR</th>
                             <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#items}}
                         <tr>
-                            <td><a href="#/vlans/{{name}}">{{name}}</a></td>
-                            <td><a href="#/env/{{env}}">{{env}}</a></td>
-                            <td>{{cidr}}</td>
+                            <td><a href="#/env/{{name}}">{{name}}</a></td>
                             <td>{{description}}</td>
                         </tr>
                         {{/items}}
