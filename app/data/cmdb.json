@@ -1,97 +1,118 @@
 {
-    "env": [
+  "env": [
+    {
+      "name": "TST",
+      "description": "Environment where all tests are run"
+    },
+    {
+      "name": "PRD",
+      "description": "Production application"
+    }
+  ],
+  "vlans": [
+    {
+      "name": "VLAN-658",
+      "cidr": "192.168.1.1/27",
+      "description": "ala ma kota",
+      "env": "TST"
+    },
+    {
+      "name": "VLAN-701",
+      "cidr": "192.168.2.1/27",
+      "description": "ala ma kota",
+      "env": "TST"
+    }
+  ],
+  "firewall-rules": [
+    {
+      "name": "a to b",
+      "source": {
+        "vlan": null,
+        "ip_v4": null,
+        "cidr": "192.168.1.1/27",
+        "ports": [
+          "8080"
+        ]
+      },
+      "destination": {
+        "vlan": null,
+        "ip_v4": null,
+        "cidr": "192.168.1.1/27",
+        "ports": [
+          "any"
+        ]
+      }
+    }
+  ],
+  "machines": [
+    {
+      "name": "oc-ec-01",
+      "env": "TST",
+      "template": "testGroup",
+      "description": "ala ma kota, psa i królika",
+      "network-interfaces": [
         {
-            "name": "TST",
-            "description": "Environment where all tests are run"
-        },
-        {
-            "name": "PRD",
-            "description": "Production application"
+          "name": "ens102",
+          "ip_v4": "",
+          "netMask": "",
+          "cidr": ""
         }
-    ],
-    "vlans": [
+      ],
+      "volumes": [
         {
-            "name": "VLAN-658",
-            "cidr": "192.168.1.1/27",
-            "description": "ala ma kota",
-            "env": "TST"
-        },
-        {
-            "name": "VLAN-701",
-            "cidr": "192.168.2.1/27",
-            "description": "ala ma kota",
-            "env": "TST"
+          "name": "some nice name",
+          "size": 156,
+          "mount": "/data"
         }
-    ],
-    "firewall-rules": [
+      ]
+    },
+    {
+      "name": "oc-ec-02",
+      "env": "TST",
+      "template": "testGroup",
+      "description": "ala ma kota, psa i królika",
+      "vcpu": 12,
+      "memory": "16",
+      "network-interfaces": [
         {
-            "name": "a to b",
-            "source": {
-                "vlan": null,
-                "ip_v4": null,
-                "cidr": "192.168.1.1/27",
-                "ports": [
-                    "8080"
-                ]
-            },
-            "destination": {
-                "vlan": null,
-                "ip_v4": null,
-                "cidr": "192.168.1.1/27",
-                "ports": [
-                    "any"
-                ]
-            }
+          "name": "ens102",
+          "ip_v4": "",
+          "netMask": "",
+          "cidr": ""
         }
-    ],
-    "machines": [
+      ],
+      "volumes": [
         {
-            "name": "oc-ec-01",
-            "env": "TST",
-            "group": "testGroup",
-            "description": "ala ma kota, psa i królika",
-            "vcpu": 12,
-            "memory": "16",
-            "network-interfaces": [
-                {
-                    "name": "ens102",
-                    "ip_v4": "",
-                    "netMask": "",
-                    "cidr": ""
-                }
-            ],
-            "volumes": [
-                {
-                    "name": "some nice name",
-                    "size": 156,
-                    "mount": "/data"
-                }
-            ]
+          "name": "some nice name",
+          "size": 156,
+          "mount": "/data"
         }
-    ],
-    "machine-templates": [
+      ]
+    }
+  ],
+  "machine-templates": [
+    {
+      "name": "testGroup",
+      "env": "TST",
+      "vcpu": 12,
+      "memory": "16",
+      "name-mask": "oc-ec-{number:DD}",
+      "description": "ala ma kota, psa i królika",
+      "network-interfaces": [
         {
-            "name": "testGroup",
-            "env": "TST",
-            "vcpu": 12,
-            "memory": "16",
-            "name-mask": "oc-ec-{number:DD}",
-            "description": "ala ma kota, psa i królika",
-            "network-interfaces": [
-                {
-                    "name": "ens102",
-                    "ip_v4": "",
-                    "netMask": "",
-                    "cidr": ""
-                }
-            ],
-            "volumes": [
-                {
-                    "name": "some nice name",
-                    "size": 156,
-                    "mount": "/data"
-                }
-            ]
+          "name": "ens102",
+          "ip_v4": "",
+          "netMask": "",
+          "cidr": ""
         }
-    ]
+      ],
+      "volumes": [
+        {
+          "name": "some nice name",
+          "size": 156,
+          "mount": "/data"
+        }
+      ]
+    }
+  ]
 }

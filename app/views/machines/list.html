@@ -18,7 +18,10 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>CIDR</th>
+                            <th>Environment</th>
+                            <th>Machine template</th>
+                            <th>vCPU</th>
+                            <th>Memory</th>
                             <th>Description</th>
                         </tr>
                     </thead>
@@ -26,7 +29,10 @@
                         {{#items}}
                         <tr>
                             <td><a href="#/machines/{{name}}">{{name}}</a></td>
-                            <td>{{cidr}}</td>
+                            <td><a href="#/env/{{env}}">{{env}}</a></td>
+                            <td><a href="#/machine-template/{{template}}">{{template}}</a></td>
+                            <td>{{vcpu}}</td>
+                            <td>{{memory}}</td>
                             <td>{{description}}</td>
                         </tr>
                         {{/items}}
