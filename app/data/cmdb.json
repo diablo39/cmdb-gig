@@ -53,16 +53,25 @@
       "network-interfaces": [
         {
           "name": "ens102",
-          "ip_v4": "",
-          "netMask": "",
-          "cidr": ""
+          "ip_v4": "19.168.1.3",
+          "netMask": "some mast",
+          "cidr": "some cidr",
+          "vlan": "VLAN-658"
+        },
+        {
+          "name": "ens302",
+          "ip_v4": "192.168.1.33",
+          "netMask": "some mast",
+          "cidr": "some cidr",
+          "vlan": "VLAN-701"
         }
       ],
       "volumes": [
         {
           "name": "some nice name",
           "size": 156,
-          "mount": "/data"
+          "mount": "/data",
+          "description":  "Stores data of the application"
         }
       ]
     },
@@ -78,7 +87,8 @@
           "name": "ens102",
           "ip_v4": "",
           "netMask": "",
-          "cidr": ""
+          "cidr": "",
+          "vlan":  "VLAN-658"
         }
       ],
       "volumes": [

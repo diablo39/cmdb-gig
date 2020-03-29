@@ -10,7 +10,7 @@
         </div>
         <div class="page-title-actions">
             <button type="button" title="Go Back" class="btn-shadow mr-3 btn btn-info"
-                onclick="window.location='#/machines'">
+                    onclick="window.location='#/machines'">
                 <i class="fa fa-arrow-left"></i> To List
             </button>
         </div>
@@ -27,6 +27,22 @@
                     <label for="exampleEmail" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">{{name}}</div>
                 </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">Template</label>
+                    <div class="col-sm-10"><a href="#/machine-templates/{{template}}">{{template}}</a></div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">vCPU</label>
+                    <div class="col-sm-10">{{vcpu}}</div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">Memory</label>
+                    <div class="col-sm-10">{{memory}} GB</div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">{{description}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -37,7 +53,30 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Network interfaces</h5>
-
+        
+                <table class="mb-0 table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>VLAN</th>
+                            <th>IP v4</th>
+                            <th>Net mask</th>
+                            <th>CIDR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#network-interfaces}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td><a href="#/vlans/{{vlan}}">{{vlan}}</a></td>
+                            <td>{{ip_v4}}</a></td>
+                            <td>{{netMask}}</td>
+                            <td>{{cidr}}</td>
+                        </tr>
+                        {{/network-interfaces}}
+                    </tbody>
+                </table>
+      
             </div>
         </div>
     </div>
@@ -46,8 +85,27 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Volumes</h5>
-
+                <h5 class="card-title">Data volumes</h5>
+                <table class="mb-0 table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Size [GB]</th>
+                            <th>Mount point</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#volumes}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{size}}</td>
+                            <td>{{mount}}</td>
+                            <td>{{description}}</td>
+                        </tr>
+                        {{/volumes}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

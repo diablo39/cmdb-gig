@@ -51,7 +51,12 @@ var app = Sammy('#main', function () {
     });
 
 
-    this.get("#/machine-groups", function () {
+    this.get("#/machine-templates", function () {
+        this.render('./app/views/common/soon.html', {}).swap();
+        activateMenu('#/machine-groups');
+    });
+
+    this.get("#/machine-templates/:name", function () {
         this.render('./app/views/common/soon.html', {}).swap();
         activateMenu('#/machine-groups');
     });
@@ -132,6 +137,8 @@ function processMachines(data) {
                 machine[key] = value;
             }
         }
+
+        // TODO: work with vlans
     }
 
     return data;
