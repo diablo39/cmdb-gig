@@ -19,7 +19,6 @@
                         <tr>
                             <th>Name</th>
                             <th>Environment</th>
-                            <th>Machine template</th>
                             <th>vCPU</th>
                             <th>Memory</th>
                             <th>Operating system</th>
@@ -29,9 +28,8 @@
                     <tbody>
                         {{#items}}
                         <tr>
-                            <td><a href="#/machines/{{name}}">{{name}}</a></td>
+                            <td><a href="#/machine-templates/{{name}}">{{name}}</a></td>
                             <td><a href="#/env/{{env}}">{{env}}</a></td>
-                            <td><a href="#/machine-templates/{{template}}">{{template}}</a></td>
                             <td>{{vcpu}}</td>
                             <td>{{memory}}</td>
                             <td>{{operatingSystem}}</td>

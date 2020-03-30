@@ -52,12 +52,14 @@ var app = Sammy('#main', function () {
 
 
     this.get("#/machine-templates", function () {
-        this.render('./app/views/common/soon.html', {}).swap();
+        this.render('./app/views/machine-templates/list.html', {items: app.data["machine-templates"]}).swap();
         activateMenu('#/machine-groups');
     });
 
     this.get("#/machine-templates/:name", function () {
-        this.render('./app/views/common/soon.html', {}).swap();
+        var name = this.params['name'];
+        var item = getItem(app.data["machine-templates"], 'name', name);
+        this.render('./app/views/machine-templates/details.html', item).swap();
         activateMenu('#/machine-groups');
     });
 

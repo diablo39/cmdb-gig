@@ -10,7 +10,7 @@
         </div>
         <div class="page-title-actions">
             <button type="button" title="Go Back" class="btn-shadow mr-3 btn btn-info"
-                    onclick="window.location='#/machines'">
+                    onclick="window.location='#/machine-templates'">
                 <i class="fa fa-arrow-left"></i> To List
             </button>
         </div>
@@ -26,10 +26,6 @@
                 <div class="position-relative row form-group">
                     <label for="exampleEmail" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">{{name}}</div>
-                </div>
-                <div class="position-relative row form-group">
-                    <label for="exampleEmail" class="col-sm-2 col-form-label">Template</label>
-                    <div class="col-sm-10"><a href="#/machine-templates/{{template}}">{{template}}</a></div>
                 </div>
                 <div class="position-relative row form-group">
                     <label for="exampleEmail" class="col-sm-2 col-form-label">Operating system</label>
@@ -63,7 +59,6 @@
                         <tr>
                             <th>Name</th>
                             <th>VLAN</th>
-                            <th>IP v4</th>
                             <th>Net mask</th>
                             <th>CIDR</th>
                         </tr>
@@ -73,7 +68,6 @@
                         <tr>
                             <td>{{name}}</td>
                             <td><a href="#/vlans/{{vlan}}">{{vlan}}</a></td>
-                            <td>{{ipv4}}</a></td>
                             <td>{{netMask}}</td>
                             <td>{{cidr}}</td>
                         </tr>
