@@ -4,4 +4,6 @@
 
 * data tables
 * not found
+* firewall rules
+* applications
   
