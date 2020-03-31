@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbYamlExporter", "DbYamlExporter.csproj", "{7009E96F-2FFA-4279-BD09-642BA9ACD6F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsefullCode", "UsefullCode.csproj", "{8F314364-B1AA-468B-86DB-AE65B5BBC733}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7009E96F-2FFA-4279-BD09-642BA9ACD6F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7009E96F-2FFA-4279-BD09-642BA9ACD6F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7009E96F-2FFA-4279-BD09-642BA9ACD6F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7009E96F-2FFA-4279-BD09-642BA9ACD6F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F314364-B1AA-468B-86DB-AE65B5BBC733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F314364-B1AA-468B-86DB-AE65B5BBC733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F314364-B1AA-468B-86DB-AE65B5BBC733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F314364-B1AA-468B-86DB-AE65B5BBC733}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {35DA6AB5-F3CD-4E29-A5FF-9B32734DF53D}
+		SolutionGuid = {B63596D9-AEAD-4FE0-9ECE-7819233AC3D5}
 	EndGlobalSection
 EndGlobal

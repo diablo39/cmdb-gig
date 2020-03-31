@@ -1,16 +1,27 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Xunit;
+using Xunit.Abstractions;
 
-namespace DbYamlExporter
+namespace UsefullCode
 {
-    class Program
+    public class DbToYaml
     {
-        static string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=test;Integrated Security=True";
-        static string tableName = "TestTable";
-        static void Main(string[] args)
+        private readonly ITestOutputHelper output;
+
+        public DbToYaml(ITestOutputHelper output)
         {
+            this.output = output;
+        }
+
+        [Fact]
+        public void Test1()
+        {
+            string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=test;Integrated Security=True";
+            string tableName = "TestTable";
+
             using (var sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
@@ -23,7 +34,7 @@ namespace DbYamlExporter
 
                     using (var reader = command.ExecuteReader())
                     {
-                        while(reader.Read())
+                        while (reader.Read())
                         {
                             var item = new Dictionary<string, object>();
 
@@ -40,10 +51,11 @@ namespace DbYamlExporter
 
 
                     var serializer = new YamlDotNet.Serialization.Serializer();
-                    serializer.Serialize(Console.Out, buffer);
+                    var result = serializer.Serialize(buffer);
+
+                    output.WriteLine(result);
                 }
             }
-
         }
     }
 }
