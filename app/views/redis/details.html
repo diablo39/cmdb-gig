@@ -1,0 +1,65 @@
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fa fas fa-sort text-success">
+                </i>
+            </div>
+            <div>{{name}}</div>
+
+        </div>
+        <div class="page-title-actions">
+            <button type="button" title="Go Back" class="btn-shadow mr-3 btn btn-info"
+                onclick="window.location='#/redis'">
+                <i class="fa fa-arrow-left"></i> To List
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">{{name}}</div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleSelect" class="col-sm-2 col-form-label">Type</label>
+                    <div class="col-sm-10">{{type}}</div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleSelect" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">{{description}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Hosts</h5>
+        
+                <table class="mb-0 table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#hosts}}
+                        <tr>
+                            <td><a href="#/machines/{{.}}">{{.}}</a></td>
+                        </tr>
+                        {{/hosts}}
+                    </tbody>
+                </table>
+      
+            </div>
+        </div>
+    </div>
+</div>

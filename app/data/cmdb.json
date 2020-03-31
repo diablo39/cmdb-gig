@@ -102,6 +102,10 @@
           "size": 156,
           "mount": "/data"
         }
+      ],
+      "dns-names":[
+        "alama.kota",
+        "psa.i.krolika"
       ]
     }
   ],
@@ -129,6 +133,17 @@
           "size": 156,
           "mount": "/data"
         }
+      ]
+    }
+  ],
+  "redis": [
+    {
+      "name": "Shop",
+      "description": "",
+      "port": "6379",
+      "type": "cluster",
+      "hosts": [
+        "oc-ec-01"
       ]
     }
   ]

@@ -56,6 +56,31 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
+                <h5 class="card-title">DNS Names</h5>
+        
+                <table class="mb-0 table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#dns-names}}
+                        <tr>
+                            <td>{{.}}</td>
+                        </tr>
+                        {{/dns-names}}
+                    </tbody>
+                </table>
+      
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
                 <h5 class="card-title">Network interfaces</h5>
         
                 <table class="mb-0 table table-hover">

@@ -82,6 +82,18 @@ var app = Sammy('#main', function () {
         activateMenu('#/applications');
     });
 
+    this.get("#/redis", function () {
+        this.render('./app/views/redis/list.html', { "items": app.data.redis }).swap();
+        activateMenu('#/redis');
+    });
+
+    this.get("#/redis/:name", function (context) {
+        var name = this.params['name'];
+        var item = getItem(app.data.redis, 'name', name);
+        this.render('./app/views/redis/details.html', item).swap();
+        activateMenu('#/redis');
+    });
+
 
     this.get("#/soon", function () {
         this.render('./app/views/common/soon.html', {}).swap();
