@@ -38,12 +38,12 @@ stages:
     - script: |
         npm install
       displayName: 'npm install, build and test'
-      workingDirectory: src
+      workingDirectory: src/web
       
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src/web'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
