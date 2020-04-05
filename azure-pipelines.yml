@@ -70,7 +70,7 @@ stages:
             inputs:
               azureSubscription: 'Visual Studio Professional with MSDN (69ef1179-704f-4436-b83e-0af3b0f6f51b)'
               appType: 'webApp'
-              appName: 'cmdn-gig'
+              appName: 'cmdb-gig'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               deploymentMethod: 'auto'
               runtimeStack: 'NODE|10.10'
