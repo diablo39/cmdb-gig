@@ -86,9 +86,9 @@ var app = Sammy('#main', function () {
         activateMenu('#/f5-vs');
     });
 
-    this.get("#/firewall-rules", function () {
-        this.render('./app/views/common/soon.html', {}).swap();
-        activateMenu('#/firewall-rules');
+    this.get("#/firewall-rules", function (context) {
+        this.render('./app/views/firewall-rules/list.html', { "items": app.data['firewall-rules'] }).swap();
+        activateMenu(context.path);
     });
 
 
