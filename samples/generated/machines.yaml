@@ -1,0 +1,480 @@
+﻿- name: DEV-APP-SERVERS00
+  env: DEV
+  template: 
+  description: 
+  vcpu: 4
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.11.1
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.12.1
+    net-mask: 255.255.255.224
+- name: DEV-APP-SERVERS01
+  env: DEV
+  template: 
+  description: 
+  vcpu: 4
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.11.2
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.12.2
+    net-mask: 255.255.255.224
+- name: DEV-APP-SERVERS02
+  env: DEV
+  template: 
+  description: 
+  vcpu: 4
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.11.3
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.12.3
+    net-mask: 255.255.255.224
+- name: DEV-APP-SERVERS03
+  env: DEV
+  template: 
+  description: 
+  vcpu: 4
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.11.4
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.12.4
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS00
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.1
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.1
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS01
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.2
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.2
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS02
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.3
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.3
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS03
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.4
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.4
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS04
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.5
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.5
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS05
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.6
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.6
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS06
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.7
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.7
+    net-mask: 255.255.255.224
+- name: TST-APP-SERVERS07
+  env: TST
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.21.8
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.22.8
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS00
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.1
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.1
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS01
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.2
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.2
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS02
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.3
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.3
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS03
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.4
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.4
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS04
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.5
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.5
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS05
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.6
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.6
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS06
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.7
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.7
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS07
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.8
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.8
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS08
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.9
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.9
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS09
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.10
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.10
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS10
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.11
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.11
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS11
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.12
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.12
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS12
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.13
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.13
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS13
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.14
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.14
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS14
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.15
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.15
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS15
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.16
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.16
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS16
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.17
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.17
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS17
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.18
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.18
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS18
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.19
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.19
+    net-mask: 255.255.255.224
+- name: PRD-APP-SERVERS19
+  env: PRD
+  template: 
+  description: 
+  vcpu: 8
+  memory: 32
+  operating-system-class: Linux
+  operating-system: Ubuntu 18.10
+  network-interfaces:
+  - name: ens32
+    ipv4: 192.168.31.20
+    net-mask: 255.255.255.224
+  - name: ens312
+    ipv4: 192.168.32.20
+    net-mask: 255.255.255.224

@@ -1,0 +1,108 @@
+﻿- name: 001
+  code: 
+  alias: 
+  cidr: 192.168.11.1/27
+  description: 
+  env: DEV
+- name: 002
+  code: 
+  alias: 
+  cidr: 192.168.12.1/27
+  description: 
+  env: DEV
+- name: 003
+  code: 
+  alias: 
+  cidr: 192.168.13.1/27
+  description: 
+  env: DEV
+- name: 004
+  code: 
+  alias: 
+  cidr: 192.168.14.1/27
+  description: 
+  env: DEV
+- name: 005
+  code: 
+  alias: 
+  cidr: 192.168.15.1/27
+  description: 
+  env: DEV
+- name: 006
+  code: 
+  alias: 
+  cidr: 192.168.16.1/27
+  description: 
+  env: DEV
+- name: 011
+  code: 
+  alias: 
+  cidr: 192.168.21.1/27
+  description: 
+  env: TST
+- name: 012
+  code: 
+  alias: 
+  cidr: 192.168.22.1/27
+  description: 
+  env: TST
+- name: 013
+  code: 
+  alias: 
+  cidr: 192.168.23.1/27
+  description: 
+  env: TST
+- name: 014
+  code: 
+  alias: 
+  cidr: 192.168.24.1/27
+  description: 
+  env: TST
+- name: 015
+  code: 
+  alias: 
+  cidr: 192.168.25.1/27
+  description: 
+  env: TST
+- name: 016
+  code: 
+  alias: 
+  cidr: 192.168.26.1/27
+  description: 
+  env: TST
+- name: 021
+  code: 
+  alias: 
+  cidr: 192.168.31.1/27
+  description: 
+  env: PRD
+- name: 022
+  code: 
+  alias: 
+  cidr: 192.168.32.1/27
+  description: 
+  env: PRD
+- name: 023
+  code: 
+  alias: 
+  cidr: 192.168.33.1/27
+  description: 
+  env: PRD
+- name: 024
+  code: 
+  alias: 
+  cidr: 192.168.34.1/27
+  description: 
+  env: PRD
+- name: 025
+  code: 
+  alias: 
+  cidr: 192.168.35.1/27
+  description: 
+  env: PRD
+- name: 026
+  code: 
+  alias: 
+  cidr: 192.168.36.1/27
+  description: 
+  env: PRD
