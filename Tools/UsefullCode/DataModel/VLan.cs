@@ -10,13 +10,13 @@ namespace UsefullCode
 
         public string Name { get; set; }
 
-        public string Code { get; set; }
+        public string Code { get { return "VLAN:" + Env + Name; } }
 
-        public string Alias { get; set; }
+        public string Alias { get { return Env + Name; } }
 
-        public string Cidr { get; private set; }
+        public string Cidr { get; }
 
-        public string Description { get; set; }
+        public string Description { get { return "Vlan for some mysterious machines"; } }
 
         public string Env { get; set; }
 

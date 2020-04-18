@@ -1,108 +1,108 @@
 ﻿- name: 001
-  code: 
-  alias: 
+  code: VLAN:DEV001
+  alias: DEV001
   cidr: 192.168.11.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: DEV
 - name: 002
-  code: 
-  alias: 
+  code: VLAN:DEV002
+  alias: DEV002
   cidr: 192.168.12.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: DEV
 - name: 003
-  code: 
-  alias: 
+  code: VLAN:DEV003
+  alias: DEV003
   cidr: 192.168.13.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: DEV
 - name: 004
-  code: 
-  alias: 
+  code: VLAN:DEV004
+  alias: DEV004
   cidr: 192.168.14.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: DEV
 - name: 005
-  code: 
-  alias: 
+  code: VLAN:DEV005
+  alias: DEV005
   cidr: 192.168.15.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: DEV
 - name: 006
-  code: 
-  alias: 
+  code: VLAN:DEV006
+  alias: DEV006
   cidr: 192.168.16.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: DEV
 - name: 011
-  code: 
-  alias: 
+  code: VLAN:TST011
+  alias: TST011
   cidr: 192.168.21.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: TST
 - name: 012
-  code: 
-  alias: 
+  code: VLAN:TST012
+  alias: TST012
   cidr: 192.168.22.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: TST
 - name: 013
-  code: 
-  alias: 
+  code: VLAN:TST013
+  alias: TST013
   cidr: 192.168.23.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: TST
 - name: 014
-  code: 
-  alias: 
+  code: VLAN:TST014
+  alias: TST014
   cidr: 192.168.24.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: TST
 - name: 015
-  code: 
-  alias: 
+  code: VLAN:TST015
+  alias: TST015
   cidr: 192.168.25.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: TST
 - name: 016
-  code: 
-  alias: 
+  code: VLAN:TST016
+  alias: TST016
   cidr: 192.168.26.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: TST
 - name: 021
-  code: 
-  alias: 
+  code: VLAN:PRD021
+  alias: PRD021
   cidr: 192.168.31.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: PRD
 - name: 022
-  code: 
-  alias: 
+  code: VLAN:PRD022
+  alias: PRD022
   cidr: 192.168.32.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: PRD
 - name: 023
-  code: 
-  alias: 
+  code: VLAN:PRD023
+  alias: PRD023
   cidr: 192.168.33.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: PRD
 - name: 024
-  code: 
-  alias: 
+  code: VLAN:PRD024
+  alias: PRD024
   cidr: 192.168.34.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: PRD
 - name: 025
-  code: 
-  alias: 
+  code: VLAN:PRD025
+  alias: PRD025
   cidr: 192.168.35.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: PRD
 - name: 026
-  code: 
-  alias: 
+  code: VLAN:PRD026
+  alias: PRD026
   cidr: 192.168.36.1/27
-  description: 
+  description: Vlan for some mysterious machines
   env: PRD
