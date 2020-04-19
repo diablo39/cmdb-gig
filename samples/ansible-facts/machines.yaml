@@ -1,1 +1,29 @@
-- vcpu: 1
+machines:
+- name: rg-ansible-test
+  env: DEV
+  description: null
+  vcpu: 1
+  memory: 1905
+  operating-system-class: Linux
+  operating-system-distribution: Ubuntu
+  operating-system: Ubuntu 18.04.4 LTS
+  fqdn: rg-ansible-test.internal.cloudapp.net
+  template: null
+  network-interfaces:
+  - name: eth0
+    ipv4-address: 10.0.1.4
+    ipv4-netmask: 255.255.255.0
+    ipv4-network: 10.0.1.0
+  data-volumes:
+  - device: /dev/sdb1
+    size: 9.78GB
+    mount: /mnt
+    fstype: ext4
+  - device: /dev/sda15
+    size: 0.1GB
+    mount: /boot/efi
+    fstype: vfat
+  - device: /dev/sda1
+    size: 28.91GB
+    mount: /
+    fstype: ext4
