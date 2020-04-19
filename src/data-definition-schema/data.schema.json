@@ -1,0 +1,147 @@
+{
+    "id": "http://cmdb-gig/schemas",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "machines": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/Machine"
+                    }
+                ]
+            }
+        },
+        "vlans": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/Vlan"
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Vlan": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "alias": {
+                    "type": "string"
+                },
+                "cidr": {
+                    "type": "string"
+                },
+                "decription": {
+                    "type": "string"
+                },
+                "vlan": {
+                    "type": "string"
+                },
+                "env": {
+                    "type": "string"
+                }
+            }
+        },
+        "Machine": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "env": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "vcpu": {
+                    "type": "number"
+                },
+                "memory": {
+                    "type": "number"
+                },
+                "operating-system-class": {
+                    "type": "string"
+                },
+                "operating-system-distribution": {
+                    "type": "string"
+                },
+                "operating-system": {
+                    "type": "string"
+                },
+                "fqdn": {
+                    "type": "string"
+                },
+                "template": {
+                    "type": "string"
+                },
+                "network-interfaces": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/MachineNetworkInterface"
+                            }
+                        ]
+                    }
+                },
+                "data-volumes": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/MachineDataVolume"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "MachineNetworkInterface": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "ipv4-address": {
+                    "type": "string"
+                },
+                "ipv4-netmask": {
+                    "type": "string"
+                },
+                "ipv4-network": {
+                    "type": "string"
+                },
+                "ipv4-cidr": {
+                    "type": "string"
+                },
+                "ipv4-vlan": {
+                    "type": "string"
+                }
+            }
+        },
+        "MachineDataVolume": {
+            "type": "object",
+            "properties": {
+                "device": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "mount": {
+                    "type": "string"
+                },
+                "fstype": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
