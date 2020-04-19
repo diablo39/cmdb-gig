@@ -65,54 +65,20 @@
       "network-interfaces": [
         {
           "name": "ens102",
-          "ipv4": "19.168.1.3",
-          "net-mask": "some mast",
+          "ipv4-address": "19.168.1.3",
+          "ipv4-netmask": "some mast",
+          "ipv4-network":"",
           "cidr": "some cidr",
           "vlan": "658"
-        },
-        {
-          "name": "ens302",
-          "ipv4": "192.168.1.33",
-          "net-mask": "some mast",
-          "cidr": "some cidr",
-          "vlan": "701"
         }
       ],
-      "volumes": [
+      "data-volumes": [
         {
           "name": "some nice name",
           "size": 156,
           "mount": "/data",
           "description":  "Stores data of the application"
         }
-      ]
-    },
-    {
-      "name": "oc-ec-02",
-      "env": "TST",
-      "template": "testGroup",
-      "description": "ala ma kota, psa i królika",
-      "vcpu": 12,
-      "memory": "16",
-      "network-interfaces": [
-        {
-          "name": "ens102",
-          "ipv4": "",
-          "net-mask": "",
-          "cidr": "",
-          "vlan":  "VLAN-658"
-        }
-      ],
-      "volumes": [
-        {
-          "name": "some nice name",
-          "size": 156,
-          "mount": "/data"
-        }
-      ],
-      "dns-names":[
-        "alama.kota",
-        "psa.i.krolika"
       ]
     }
   ],
@@ -123,8 +89,8 @@
       "vcpu": 12,
       "memory": "16",
       "name-mask": "oc-ec-{number:DD}",
-      "operatingSystemClass": "Linux",
-      "operatingSystem": "Ubuntu 18.10",
+      "operating-system-class": "Linux",
+      "operating-system": "Ubuntu 18.10",
       "description": "ala ma kota, psa i królika",
       "network-interfaces": [
         {
@@ -136,7 +102,6 @@
       ],
       "volumes": [
         {
-          "name": "some nice name",
           "size": 156,
           "mount": "/data"
         }
