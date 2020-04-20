@@ -8,5 +8,8 @@
     "start": "http-server . --port 8083"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "0.12.1"
+  }
 }

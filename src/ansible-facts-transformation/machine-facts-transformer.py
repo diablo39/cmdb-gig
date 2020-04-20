@@ -25,10 +25,9 @@ jsons = glob.glob(workingDirectory + "*.json")
 
 
 # %%
+results = []
 
-for jsonFile in jsons:
-    results = []
-    
+for jsonFile in jsons:   
     
     with open(jsonFile) as f:
         facts = json.load(f)
@@ -41,24 +40,26 @@ for jsonFile in jsons:
         resultItem['memory'] = facts['ansible_memtotal_mb']
         resultItem['operating-system-class'] = facts['ansible_system']
         resultItem['operating-system-distribution'] = facts['ansible_distribution']
-        resultItem['operating-system'] = facts['ansible_lsb']['description']
+        resultItem['operating-system-version'] = facts['ansible_distribution_version']
         resultItem['fqdn'] = facts['ansible_fqdn']
         resultItem['template'] = facts.get('cmdb_template')
         networkInterfaces = []
-        
-        for networkInterfaceName in facts['ansible_interfaces']:
-            networkInterface = facts['ansible_' + networkInterfaceName]
-            networkInterfaceType = networkInterface['type']
-            if networkInterfaceType != 'ether':
-                continue
-            
-            networkInterfaceResult = dict()
-            networkInterfaceResult['name'] = networkInterface['device']
-            networkInterfaceResult['ipv4-address'] = networkInterface['ipv4']['address']
-            networkInterfaceResult['ipv4-netmask'] = networkInterface['ipv4']['netmask']
-            networkInterfaceResult['ipv4-network'] = networkInterface['ipv4']['network']
-            networkInterfaces.append(networkInterfaceResult)
-            
+        try:
+            for networkInterfaceName in facts['ansible_interfaces']:
+                networkInterface = facts['ansible_' + networkInterfaceName]
+                networkInterfaceType = networkInterface['type']
+                if networkInterfaceType != 'ether':
+                    continue
+                
+                networkInterfaceResult = dict()
+                networkInterfaceResult['name'] = networkInterface['device']
+                networkInterfaceResult['ipv4-address'] = networkInterface['ipv4']['address']
+                networkInterfaceResult['ipv4-netmask'] = networkInterface['ipv4']['netmask']
+                networkInterfaceResult['ipv4-network'] = networkInterface['ipv4']['network']
+                networkInterfaces.append(networkInterfaceResult)
+        except:
+            print("Network interface failed for machine: " + facts['ansible_nodename'])    
+
         resultItem['network-interfaces'] = networkInterfaces
         
         dataVolumes = []
@@ -74,20 +75,13 @@ for jsonFile in jsons:
         resultItem['data-volumes'] = dataVolumes
         results.append(resultItem)
         
-    resultPath = workingDirectory+"machines.yaml"
-   
-    if os.path.exists(resultPath):
-        os.remove(resultPath)        
-    
-    resultDocument = dict()
-    resultDocument['machines']=results
-    
-    with open(resultPath, 'w') as yaml_file:
-        yaml.dump(resultDocument, yaml_file, default_flow_style=False, sort_keys=False)
+resultPath = workingDirectory+"machines.yaml"
 
-"""
-    "name": "some nice name",
-    "size": 156,
-    "mount": "/data"
+if os.path.exists(resultPath):
+    os.remove(resultPath)        
 
-"""
+resultDocument = dict()
+resultDocument['machines']=results
+
+with open(resultPath, 'w') as yaml_file:
+    yaml.dump(resultDocument, yaml_file)

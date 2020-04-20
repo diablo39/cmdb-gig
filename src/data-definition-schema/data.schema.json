@@ -72,7 +72,7 @@
                 "operating-system-distribution": {
                     "type": "string"
                 },
-                "operating-system": {
+                "operating-system-version": {
                     "type": "string"
                 },
                 "fqdn": {
