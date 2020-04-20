@@ -21,6 +21,7 @@ namespace UsefullCode
         {
             string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=test;Integrated Security=True";
             string tableName = "TestTable";
+            string propertyName = "vlans";
 
             using (var sqlConnection = new SqlConnection(connectionString))
             {
@@ -49,9 +50,9 @@ namespace UsefullCode
                         }
                     }
 
-
+                    var resultDocument = new Dictionary<string, object>() { { propertyName, buffer} };
                     var serializer = new YamlDotNet.Serialization.Serializer();
-                    var result = serializer.Serialize(buffer);
+                    var result = serializer.Serialize(resultDocument);
 
                     output.WriteLine(result);
                 }
