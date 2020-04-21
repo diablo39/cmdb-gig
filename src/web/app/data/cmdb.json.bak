@@ -1,0 +1,122 @@
+{
+  "env": [
+    {
+      "name": "TST",
+      "description": "Environment where all tests are run"
+    },
+    {
+      "name": "PRD",
+      "description": "Production application"
+    }
+  ],
+  "vlans": [
+    {
+      
+      "name": "658",
+      "code": "APPSERVERS",
+      "alias": "some alias",
+      "cidr": "192.168.1.1/27",
+      "description": "ala ma kota",
+      "env": "TST"
+    },
+    {
+      "name": "701",
+      "code":"DBSERVERS",
+      "alias": "some alias",
+      "cidr": "192.168.2.1/27",
+      "description": "ala ma kota",
+      "env": "TST"
+    }
+  ],
+  "firewall-rules": [
+    {
+      "name": "a to b",
+      "protocol": "TCP",
+      "description": "some description",
+      "service": "HTTP",
+      "source": {
+        "key": "VLAN CODE",
+        "system": "STORE",
+        "env":"TST",
+        "vlan": null,
+        "ip": "192.168.1.1/27",
+        "ports": [
+          "8080"
+        ]
+      },
+      "destination": {
+        "key": "VLAN CODE",
+        "system": "STORE",
+        "env":"TST",
+        "vlan": null,
+        "ip": "192.168.1.1/27",
+        "ports": [
+          "any"
+        ]
+      }
+    }
+  ],
+  "machines": [
+    {
+      "name": "oc-ec-01",
+      "env": "TST",
+      "template": "testGroup",
+      "description": "ala ma kota, psa i królika",
+      "network-interfaces": [
+        {
+          "name": "ens102",
+          "ipv4-address": "19.168.1.3",
+          "ipv4-netmask": "some mast",
+          "ipv4-network":"",
+          "cidr": "some cidr",
+          "vlan": "658"
+        }
+      ],
+      "data-volumes": [
+        {
+          "name": "some nice name",
+          "size": 156,
+          "mount": "/data",
+          "description":  "Stores data of the application"
+        }
+      ]
+    }
+  ],
+  "machine-templates": [
+    {
+      "name": "testGroup",
+      "env": "TST",
+      "vcpu": 12,
+      "memory": "16",
+      "name-mask": "oc-ec-{number:DD}",
+      "operating-system-class": "Linux",
+      "operating-system": "Ubuntu 18.10",
+      "description": "ala ma kota, psa i królika",
+      "network-interfaces": [
+        {
+          "name": "ens102",
+          "ipv4": "",
+          "net-mask": "",
+          "cidr": ""
+        }
+      ],
+      "volumes": [
+        {
+          "size": 156,
+          "mount": "/data"
+        }
+      ]
+    }
+  ],
+  "redis": [
+    {
+      "name": "Shop",
+      "description": "",
+      "port": "6379",
+      "type": "cluster",
+      "hosts": [
+        "oc-ec-01"
+      ]
+    }
+  ]
+}
