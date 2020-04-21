@@ -34,7 +34,7 @@ namespace UsefullCode
         [YamlMember(Alias = "fqdn")]
         public string FQDN { get; set; }
 
-        public string Template { get; set; }
+        public string Group { get; set; }
 
         [YamlMember(Alias = "network-interfaces")]
         public List<MachineNetworkInterface> NetworkInterfaces { get; private set; } = new List<MachineNetworkInterface>();

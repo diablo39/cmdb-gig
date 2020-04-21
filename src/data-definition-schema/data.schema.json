@@ -78,7 +78,7 @@
                 "fqdn": {
                     "type": "string"
                 },
-                "template": {
+                "group": {
                     "type": "string"
                 },
                 "network-interfaces": {

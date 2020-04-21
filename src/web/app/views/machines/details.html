@@ -5,7 +5,7 @@
                 <i class="fa fa-cube text-success">
                 </i>
             </div>
-            <div>{{name}}</div>
+            <div>[{{env}}] {{name}}</div>
 
         </div>
         <div class="page-title-actions">
@@ -28,12 +28,24 @@
                     <div class="col-sm-10">{{name}}</div>
                 </div>
                 <div class="position-relative row form-group">
-                    <label for="exampleEmail" class="col-sm-2 col-form-label">Template</label>
-                    <div class="col-sm-10"><a href="#/machine-templates/{{template}}">{{template}}</a></div>
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">FQDN</label>
+                    <div class="col-sm-10">{{fqdn}}</div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">Environment</label>
+                    <div class="col-sm-10">{{env}}</div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">Group</label>
+                    <div class="col-sm-10"><a href="#/machine-groups/{{group}}">{{group}}</a></div>
+                </div>
+                <div class="position-relative row form-group">
+                    <label for="exampleEmail" class="col-sm-2 col-form-label">Operating system type</label>
+                    <div class="col-sm-10">{{operating-system-class}}</div>
                 </div>
                 <div class="position-relative row form-group">
                     <label for="exampleEmail" class="col-sm-2 col-form-label">Operating system</label>
-                    <div class="col-sm-10">{{operatingSystem}}</div>
+                    <div class="col-sm-10">{{operating-system-distribution}} {{operating-system-version}}</div>
                 </div>
                 <div class="position-relative row form-group">
                     <label for="exampleEmail" class="col-sm-2 col-form-label">vCPU</label>
@@ -56,31 +68,6 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">DNS Names</h5>
-        
-                <table class="mb-0 table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#dns-names}}
-                        <tr>
-                            <td>{{.}}</td>
-                        </tr>
-                        {{/dns-names}}
-                    </tbody>
-                </table>
-      
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="main-card mb-3 card">
-            <div class="card-body">
                 <h5 class="card-title">Network interfaces</h5>
         
                 <table class="mb-0 table table-hover">
@@ -88,9 +75,11 @@
                         <tr>
                             <th>Name</th>
                             <th>VLAN</th>
-                            <th>IP v4</th>
-                            <th>Net mask</th>
                             <th>CIDR</th>
+                            <th>IP Address</th>
+                            <th>Netmask</th>
+                            <th>Network</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -98,9 +87,10 @@
                         <tr>
                             <td>{{name}}</td>
                             <td><a href="#/vlans/{{vlan}}">{{vlan}}</a></td>
-                            <td>{{ipv4}}</a></td>
-                            <td>{{net-mask}}</td>
-                            <td>{{cidr}}</td>
+                            <td>{{ipv4-cidr}}</td>
+                            <td>{{ipv4-address}}</a></td>
+                            <td>{{ipv4-netmask}}</td>
+                            <td>{{ipv4-network}}</td>
                         </tr>
                         {{/network-interfaces}}
                     </tbody>
@@ -118,19 +108,19 @@
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Size [GB]</th>
+                            <th>Device</th>
                             <th>Mount point</th>
-                            <th>Description</th>
+                            <th>Size [GB]</th>
+                            <th>fstype</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#data-volumes}}
                         <tr>
-                            <td>{{name}}</td>
-                            <td>{{size}}</td>
+                            <td>{{device}}</td>
                             <td>{{mount}}</td>
-                            <td>{{description}}</td>
+                            <td>{{size}}</td>
+                            <td>{{fstype}}</td>
                         </tr>
                         {{/data-volumes}}
                     </tbody>
