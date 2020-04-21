@@ -1,4 +1,4 @@
-﻿machines:
+machines:
 - name: DEV-APP-SERVERS00
   env: DEV
   description: Server for tasks :)

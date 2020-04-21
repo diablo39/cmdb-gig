@@ -175,7 +175,7 @@ namespace UsefullCode
 
             var filePath = Path.Combine(path, fileName);
 
-            File.WriteAllText(filePath, yaml, Encoding.UTF8);
+            File.WriteAllText(filePath, yaml);
         }
 
 

@@ -1,4 +1,4 @@
-﻿vlans:
+vlans:
 - name: '[DEV] VLAN: 001'
   vlan: 001
   alias: 
