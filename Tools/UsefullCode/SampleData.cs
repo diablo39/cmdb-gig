@@ -18,30 +18,30 @@ namespace UsefullCode
 
             var vlans = new List<VLan>
             {
-                new VLan("192.168.11.1/27"){ Env = "DEV", Vlan="001" }, // 00
-                new VLan("192.168.12.1/27"){ Env = "DEV", Vlan="002" }, // 01
-                new VLan("192.168.13.1/27"){ Env = "DEV", Vlan="003" }, // 02
-                new VLan("192.168.14.1/27"){ Env = "DEV", Vlan="004" }, // 03
-                new VLan("192.168.15.1/27"){ Env = "DEV", Vlan="005" }, // 04
-                new VLan("192.168.16.1/27"){ Env = "DEV", Vlan="006" }, // 05
-                new VLan("192.168.21.1/27"){ Env = "TST", Vlan="011" }, // 06
-                new VLan("192.168.22.1/27"){ Env = "TST", Vlan="012" },
-                new VLan("192.168.23.1/27"){ Env = "TST", Vlan="013" },
-                new VLan("192.168.24.1/27"){ Env = "TST", Vlan="014" },
-                new VLan("192.168.25.1/27"){ Env = "TST", Vlan="015" },
-                new VLan("192.168.26.1/27"){ Env = "TST", Vlan="016" },
-                new VLan("192.168.31.1/27"){ Env = "PRD", Vlan="021" },
-                new VLan("192.168.32.1/27"){ Env = "PRD", Vlan="022" },
-                new VLan("192.168.33.1/27"){ Env = "PRD", Vlan="023" },
-                new VLan("192.168.34.1/27"){ Env = "PRD", Vlan="024" },
-                new VLan("192.168.35.1/27"){ Env = "PRD", Vlan="025" },
-                new VLan("192.168.36.1/27"){ Env = "PRD", Vlan="026" }
+                new VLan("192.168.11.0/27"){ Env = "DEV", Vlan="001" }, // 00
+                new VLan("192.168.12.0/27"){ Env = "DEV", Vlan="002" }, // 01
+                new VLan("192.168.13.0/27"){ Env = "DEV", Vlan="003" }, // 02
+                new VLan("192.168.14.0/27"){ Env = "DEV", Vlan="004" }, // 03
+                new VLan("192.168.15.0/27"){ Env = "DEV", Vlan="005" }, // 04
+                new VLan("192.168.16.0/27"){ Env = "DEV", Vlan="006" }, // 05
+                new VLan("192.168.21.0/27"){ Env = "TST", Vlan="011" }, // 06
+                new VLan("192.168.22.0/27"){ Env = "TST", Vlan="012" },
+                new VLan("192.168.23.0/27"){ Env = "TST", Vlan="013" },
+                new VLan("192.168.24.0/27"){ Env = "TST", Vlan="014" },
+                new VLan("192.168.25.0/27"){ Env = "TST", Vlan="015" },
+                new VLan("192.168.26.0/27"){ Env = "TST", Vlan="016" },
+                new VLan("192.168.31.0/27"){ Env = "PRD", Vlan="021" },
+                new VLan("192.168.32.0/27"){ Env = "PRD", Vlan="022" },
+                new VLan("192.168.33.0/27"){ Env = "PRD", Vlan="023" },
+                new VLan("192.168.34.0/27"){ Env = "PRD", Vlan="024" },
+                new VLan("192.168.35.0/27"){ Env = "PRD", Vlan="025" },
+                new VLan("192.168.36.0/27"){ Env = "PRD", Vlan="026" }
             };
 
             for (int i = 0; i < 150; i++)
             {
 
-                vlans.Add(new VLan($"192.168.{i + 100}.1/27") { Env = "WTF", Vlan = (100 + i).ToString("000") });
+                vlans.Add(new VLan($"192.168.{i + 100}.0/27") { Env = "WTF", Vlan = (100 + i).ToString("000") });
             }
 
             generator.AddVlans(vlans);

@@ -11,6 +11,7 @@ import glob
 import json
 import yaml
 import os
+import ipaddress
 
 # %%
 workingDirectory = sys.argv[1]
@@ -38,6 +39,24 @@ for inventoryFile in inventoryFiles:
             if inventoryField is not None:
                 resultDocument[key] += inventoryField
                 ddd='v'
+                
+# %%
+networks = dict()
+
+for vlan in resultDocument['vlans']:
+    network = ipaddress.ip_network(vlan['cidr']).network_address
+    network = str(network)
+    networks[network] = vlan
+
+
+# %%
+for machine in resultDocument['machines']:
+    for networkInterface in machine['network-interfaces']:
+        network = networkInterface['ipv4-network']
+        networkInterface['ipv4-cidr']= networks[network]['cidr']
+        networkInterface['ipv4-vlan']= networks[network]['vlan']
+        
+
 
 # %%
 resultPath = workingDirectory+"cmdb.json"
