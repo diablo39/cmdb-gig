@@ -13,9 +13,9 @@ import yaml
 import os
 
 # %%
-workingDirectory = 'C:\\Sources\\Architecture Team\\cmdb' # sys.argv[1]
-if( workingDirectory[-1] != os.path.sep ):
-    workingDirectory = workingDirectory + os.path.sep
+workingDirectory = sys.argv[1]
+if( workingDirectory[-1] != "/" ):
+    workingDirectory = workingDirectory + "/"
     
 # %%
 resultDocument = dict()
@@ -23,10 +23,10 @@ resultDocument['env'] = []
 resultDocument['machines'] = []
 resultDocument['vlans'] = []
 resultDocument['firewall-rules'] = []
-resultDocument['machine-templates'] = []
+resultDocument['machine-groups'] = []
 resultDocument['redis'] = []
 # %%
-inventoryFiles = glob.glob(workingDirectory + "**"+ os.path.sep + "*.yaml", recursive=True)
+inventoryFiles = glob.glob(workingDirectory + "**/*.yaml", recursive=True)
 
 # %%
 for inventoryFile in inventoryFiles:
@@ -40,7 +40,7 @@ for inventoryFile in inventoryFiles:
                 ddd='v'
 
 # %%
-resultPath = workingDirectory+"data.json"
+resultPath = workingDirectory+"cmdb.json"
 
 if os.path.exists(resultPath):
     os.remove(resultPath)        
