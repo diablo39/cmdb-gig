@@ -76,7 +76,7 @@ var app = Sammy('#main', function () {
 
     this.get("#/vlans/:name", function (context) {
         var name = this.params['name'];
-        var item = getItem(app.data.vlans, 'name', name);
+        var item = getItem(app.data.vlans, 'vlan', name);
         this.render('./app/views/vlans/details.html', item).swap();
         activateMenu('#/vlans');
     });
@@ -156,7 +156,7 @@ $.get("./app/data/cmdb.json", function (data) {
 function getItem(array, keyName, value) {
     for (i = 0; i < array.length; i++) {
         var item = array[i];
-        if (item[keyName] === value) {
+        if (item[keyName] == value) {
             return item;
         }
     }
@@ -169,7 +169,7 @@ function activateMenu(url) {
 }
 
 function postProcessData(data) {
-    data = processMachines(data);
+    //data = processMachines(data);
 
     return data;
 }

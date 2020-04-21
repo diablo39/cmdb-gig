@@ -17,6 +17,7 @@
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
+                            <th>VLan</th>
                             <th>Name</th>
                             <th>Environment</th>
                             <th>CIDR</th>
@@ -26,7 +27,8 @@
                     <tbody>
                         {{#items}}
                         <tr>
-                            <td><a href="#/vlans/{{name}}">{{name}}</a></td>
+                            <td><a href="#/vlans/{{vlan}}">{{vlan}}</a></td>
+                            <td>{{name}}</td>
                             <td><a href="#/env/{{env}}">{{env}}</a></td>
                             <td>{{cidr}}</td>
                             <td>{{description}}</td>
