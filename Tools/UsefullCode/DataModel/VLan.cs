@@ -8,11 +8,11 @@ namespace UsefullCode
         private IPNetwork _ipnetwork;
         private IPAddressCollection _ipAddresses;
 
-        public string Name { get; set; }
+        public string Name { get { return $"[{Env}] VLAN: {Vlan}"; } }
 
-        public string Code { get { return "VLAN:" + Env + Name; } }
+        public string Vlan { get; set; }
 
-        public string Alias { get { return Env + Name; } }
+        public string Alias { get; set; }
 
         public string Cidr { get; }
 
@@ -35,7 +35,7 @@ namespace UsefullCode
             result.Ipv4 = _ipAddresses.MoveNext() ? _ipAddresses.Current.ToString() : throw new Exception("Out of ip addresses");
 
             result.NetMask = _ipnetwork.Netmask.ToString();
-
+            result.Network = _ipnetwork.Network.ToString();
             return result;
         }
     }

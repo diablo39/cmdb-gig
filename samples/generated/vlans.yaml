@@ -1,108 +1,1009 @@
-﻿- name: 001
-  code: VLAN:DEV001
-  alias: DEV001
+﻿vlans:
+- name: '[DEV] VLAN: 001'
+  vlan: 001
+  alias: 
   cidr: 192.168.11.1/27
   description: Vlan for some mysterious machines
   env: DEV
-- name: 002
-  code: VLAN:DEV002
-  alias: DEV002
+- name: '[DEV] VLAN: 002'
+  vlan: 002
+  alias: 
   cidr: 192.168.12.1/27
   description: Vlan for some mysterious machines
   env: DEV
-- name: 003
-  code: VLAN:DEV003
-  alias: DEV003
+- name: '[DEV] VLAN: 003'
+  vlan: 003
+  alias: 
   cidr: 192.168.13.1/27
   description: Vlan for some mysterious machines
   env: DEV
-- name: 004
-  code: VLAN:DEV004
-  alias: DEV004
+- name: '[DEV] VLAN: 004'
+  vlan: 004
+  alias: 
   cidr: 192.168.14.1/27
   description: Vlan for some mysterious machines
   env: DEV
-- name: 005
-  code: VLAN:DEV005
-  alias: DEV005
+- name: '[DEV] VLAN: 005'
+  vlan: 005
+  alias: 
   cidr: 192.168.15.1/27
   description: Vlan for some mysterious machines
   env: DEV
-- name: 006
-  code: VLAN:DEV006
-  alias: DEV006
+- name: '[DEV] VLAN: 006'
+  vlan: 006
+  alias: 
   cidr: 192.168.16.1/27
   description: Vlan for some mysterious machines
   env: DEV
-- name: 011
-  code: VLAN:TST011
-  alias: TST011
+- name: '[TST] VLAN: 011'
+  vlan: 011
+  alias: 
   cidr: 192.168.21.1/27
   description: Vlan for some mysterious machines
   env: TST
-- name: 012
-  code: VLAN:TST012
-  alias: TST012
+- name: '[TST] VLAN: 012'
+  vlan: 012
+  alias: 
   cidr: 192.168.22.1/27
   description: Vlan for some mysterious machines
   env: TST
-- name: 013
-  code: VLAN:TST013
-  alias: TST013
+- name: '[TST] VLAN: 013'
+  vlan: 013
+  alias: 
   cidr: 192.168.23.1/27
   description: Vlan for some mysterious machines
   env: TST
-- name: 014
-  code: VLAN:TST014
-  alias: TST014
+- name: '[TST] VLAN: 014'
+  vlan: 014
+  alias: 
   cidr: 192.168.24.1/27
   description: Vlan for some mysterious machines
   env: TST
-- name: 015
-  code: VLAN:TST015
-  alias: TST015
+- name: '[TST] VLAN: 015'
+  vlan: 015
+  alias: 
   cidr: 192.168.25.1/27
   description: Vlan for some mysterious machines
   env: TST
-- name: 016
-  code: VLAN:TST016
-  alias: TST016
+- name: '[TST] VLAN: 016'
+  vlan: 016
+  alias: 
   cidr: 192.168.26.1/27
   description: Vlan for some mysterious machines
   env: TST
-- name: 021
-  code: VLAN:PRD021
-  alias: PRD021
+- name: '[PRD] VLAN: 021'
+  vlan: 021
+  alias: 
   cidr: 192.168.31.1/27
   description: Vlan for some mysterious machines
   env: PRD
-- name: 022
-  code: VLAN:PRD022
-  alias: PRD022
+- name: '[PRD] VLAN: 022'
+  vlan: 022
+  alias: 
   cidr: 192.168.32.1/27
   description: Vlan for some mysterious machines
   env: PRD
-- name: 023
-  code: VLAN:PRD023
-  alias: PRD023
+- name: '[PRD] VLAN: 023'
+  vlan: 023
+  alias: 
   cidr: 192.168.33.1/27
   description: Vlan for some mysterious machines
   env: PRD
-- name: 024
-  code: VLAN:PRD024
-  alias: PRD024
+- name: '[PRD] VLAN: 024'
+  vlan: 024
+  alias: 
   cidr: 192.168.34.1/27
   description: Vlan for some mysterious machines
   env: PRD
-- name: 025
-  code: VLAN:PRD025
-  alias: PRD025
+- name: '[PRD] VLAN: 025'
+  vlan: 025
+  alias: 
   cidr: 192.168.35.1/27
   description: Vlan for some mysterious machines
   env: PRD
-- name: 026
-  code: VLAN:PRD026
-  alias: PRD026
+- name: '[PRD] VLAN: 026'
+  vlan: 026
+  alias: 
   cidr: 192.168.36.1/27
   description: Vlan for some mysterious machines
   env: PRD
+- name: '[WTF] VLAN: 100'
+  vlan: 100
+  alias: 
+  cidr: 192.168.100.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 101'
+  vlan: 101
+  alias: 
+  cidr: 192.168.101.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 102'
+  vlan: 102
+  alias: 
+  cidr: 192.168.102.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 103'
+  vlan: 103
+  alias: 
+  cidr: 192.168.103.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 104'
+  vlan: 104
+  alias: 
+  cidr: 192.168.104.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 105'
+  vlan: 105
+  alias: 
+  cidr: 192.168.105.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 106'
+  vlan: 106
+  alias: 
+  cidr: 192.168.106.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 107'
+  vlan: 107
+  alias: 
+  cidr: 192.168.107.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 108'
+  vlan: 108
+  alias: 
+  cidr: 192.168.108.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 109'
+  vlan: 109
+  alias: 
+  cidr: 192.168.109.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 110'
+  vlan: 110
+  alias: 
+  cidr: 192.168.110.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 111'
+  vlan: 111
+  alias: 
+  cidr: 192.168.111.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 112'
+  vlan: 112
+  alias: 
+  cidr: 192.168.112.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 113'
+  vlan: 113
+  alias: 
+  cidr: 192.168.113.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 114'
+  vlan: 114
+  alias: 
+  cidr: 192.168.114.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 115'
+  vlan: 115
+  alias: 
+  cidr: 192.168.115.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 116'
+  vlan: 116
+  alias: 
+  cidr: 192.168.116.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 117'
+  vlan: 117
+  alias: 
+  cidr: 192.168.117.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 118'
+  vlan: 118
+  alias: 
+  cidr: 192.168.118.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 119'
+  vlan: 119
+  alias: 
+  cidr: 192.168.119.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 120'
+  vlan: 120
+  alias: 
+  cidr: 192.168.120.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 121'
+  vlan: 121
+  alias: 
+  cidr: 192.168.121.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 122'
+  vlan: 122
+  alias: 
+  cidr: 192.168.122.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 123'
+  vlan: 123
+  alias: 
+  cidr: 192.168.123.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 124'
+  vlan: 124
+  alias: 
+  cidr: 192.168.124.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 125'
+  vlan: 125
+  alias: 
+  cidr: 192.168.125.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 126'
+  vlan: 126
+  alias: 
+  cidr: 192.168.126.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 127'
+  vlan: 127
+  alias: 
+  cidr: 192.168.127.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 128'
+  vlan: 128
+  alias: 
+  cidr: 192.168.128.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 129'
+  vlan: 129
+  alias: 
+  cidr: 192.168.129.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 130'
+  vlan: 130
+  alias: 
+  cidr: 192.168.130.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 131'
+  vlan: 131
+  alias: 
+  cidr: 192.168.131.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 132'
+  vlan: 132
+  alias: 
+  cidr: 192.168.132.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 133'
+  vlan: 133
+  alias: 
+  cidr: 192.168.133.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 134'
+  vlan: 134
+  alias: 
+  cidr: 192.168.134.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 135'
+  vlan: 135
+  alias: 
+  cidr: 192.168.135.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 136'
+  vlan: 136
+  alias: 
+  cidr: 192.168.136.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 137'
+  vlan: 137
+  alias: 
+  cidr: 192.168.137.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 138'
+  vlan: 138
+  alias: 
+  cidr: 192.168.138.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 139'
+  vlan: 139
+  alias: 
+  cidr: 192.168.139.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 140'
+  vlan: 140
+  alias: 
+  cidr: 192.168.140.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 141'
+  vlan: 141
+  alias: 
+  cidr: 192.168.141.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 142'
+  vlan: 142
+  alias: 
+  cidr: 192.168.142.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 143'
+  vlan: 143
+  alias: 
+  cidr: 192.168.143.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 144'
+  vlan: 144
+  alias: 
+  cidr: 192.168.144.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 145'
+  vlan: 145
+  alias: 
+  cidr: 192.168.145.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 146'
+  vlan: 146
+  alias: 
+  cidr: 192.168.146.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 147'
+  vlan: 147
+  alias: 
+  cidr: 192.168.147.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 148'
+  vlan: 148
+  alias: 
+  cidr: 192.168.148.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 149'
+  vlan: 149
+  alias: 
+  cidr: 192.168.149.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 150'
+  vlan: 150
+  alias: 
+  cidr: 192.168.150.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 151'
+  vlan: 151
+  alias: 
+  cidr: 192.168.151.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 152'
+  vlan: 152
+  alias: 
+  cidr: 192.168.152.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 153'
+  vlan: 153
+  alias: 
+  cidr: 192.168.153.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 154'
+  vlan: 154
+  alias: 
+  cidr: 192.168.154.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 155'
+  vlan: 155
+  alias: 
+  cidr: 192.168.155.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 156'
+  vlan: 156
+  alias: 
+  cidr: 192.168.156.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 157'
+  vlan: 157
+  alias: 
+  cidr: 192.168.157.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 158'
+  vlan: 158
+  alias: 
+  cidr: 192.168.158.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 159'
+  vlan: 159
+  alias: 
+  cidr: 192.168.159.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 160'
+  vlan: 160
+  alias: 
+  cidr: 192.168.160.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 161'
+  vlan: 161
+  alias: 
+  cidr: 192.168.161.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 162'
+  vlan: 162
+  alias: 
+  cidr: 192.168.162.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 163'
+  vlan: 163
+  alias: 
+  cidr: 192.168.163.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 164'
+  vlan: 164
+  alias: 
+  cidr: 192.168.164.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 165'
+  vlan: 165
+  alias: 
+  cidr: 192.168.165.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 166'
+  vlan: 166
+  alias: 
+  cidr: 192.168.166.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 167'
+  vlan: 167
+  alias: 
+  cidr: 192.168.167.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 168'
+  vlan: 168
+  alias: 
+  cidr: 192.168.168.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 169'
+  vlan: 169
+  alias: 
+  cidr: 192.168.169.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 170'
+  vlan: 170
+  alias: 
+  cidr: 192.168.170.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 171'
+  vlan: 171
+  alias: 
+  cidr: 192.168.171.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 172'
+  vlan: 172
+  alias: 
+  cidr: 192.168.172.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 173'
+  vlan: 173
+  alias: 
+  cidr: 192.168.173.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 174'
+  vlan: 174
+  alias: 
+  cidr: 192.168.174.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 175'
+  vlan: 175
+  alias: 
+  cidr: 192.168.175.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 176'
+  vlan: 176
+  alias: 
+  cidr: 192.168.176.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 177'
+  vlan: 177
+  alias: 
+  cidr: 192.168.177.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 178'
+  vlan: 178
+  alias: 
+  cidr: 192.168.178.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 179'
+  vlan: 179
+  alias: 
+  cidr: 192.168.179.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 180'
+  vlan: 180
+  alias: 
+  cidr: 192.168.180.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 181'
+  vlan: 181
+  alias: 
+  cidr: 192.168.181.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 182'
+  vlan: 182
+  alias: 
+  cidr: 192.168.182.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 183'
+  vlan: 183
+  alias: 
+  cidr: 192.168.183.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 184'
+  vlan: 184
+  alias: 
+  cidr: 192.168.184.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 185'
+  vlan: 185
+  alias: 
+  cidr: 192.168.185.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 186'
+  vlan: 186
+  alias: 
+  cidr: 192.168.186.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 187'
+  vlan: 187
+  alias: 
+  cidr: 192.168.187.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 188'
+  vlan: 188
+  alias: 
+  cidr: 192.168.188.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 189'
+  vlan: 189
+  alias: 
+  cidr: 192.168.189.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 190'
+  vlan: 190
+  alias: 
+  cidr: 192.168.190.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 191'
+  vlan: 191
+  alias: 
+  cidr: 192.168.191.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 192'
+  vlan: 192
+  alias: 
+  cidr: 192.168.192.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 193'
+  vlan: 193
+  alias: 
+  cidr: 192.168.193.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 194'
+  vlan: 194
+  alias: 
+  cidr: 192.168.194.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 195'
+  vlan: 195
+  alias: 
+  cidr: 192.168.195.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 196'
+  vlan: 196
+  alias: 
+  cidr: 192.168.196.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 197'
+  vlan: 197
+  alias: 
+  cidr: 192.168.197.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 198'
+  vlan: 198
+  alias: 
+  cidr: 192.168.198.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 199'
+  vlan: 199
+  alias: 
+  cidr: 192.168.199.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 200'
+  vlan: 200
+  alias: 
+  cidr: 192.168.200.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 201'
+  vlan: 201
+  alias: 
+  cidr: 192.168.201.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 202'
+  vlan: 202
+  alias: 
+  cidr: 192.168.202.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 203'
+  vlan: 203
+  alias: 
+  cidr: 192.168.203.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 204'
+  vlan: 204
+  alias: 
+  cidr: 192.168.204.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 205'
+  vlan: 205
+  alias: 
+  cidr: 192.168.205.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 206'
+  vlan: 206
+  alias: 
+  cidr: 192.168.206.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 207'
+  vlan: 207
+  alias: 
+  cidr: 192.168.207.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 208'
+  vlan: 208
+  alias: 
+  cidr: 192.168.208.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 209'
+  vlan: 209
+  alias: 
+  cidr: 192.168.209.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 210'
+  vlan: 210
+  alias: 
+  cidr: 192.168.210.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 211'
+  vlan: 211
+  alias: 
+  cidr: 192.168.211.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 212'
+  vlan: 212
+  alias: 
+  cidr: 192.168.212.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 213'
+  vlan: 213
+  alias: 
+  cidr: 192.168.213.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 214'
+  vlan: 214
+  alias: 
+  cidr: 192.168.214.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 215'
+  vlan: 215
+  alias: 
+  cidr: 192.168.215.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 216'
+  vlan: 216
+  alias: 
+  cidr: 192.168.216.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 217'
+  vlan: 217
+  alias: 
+  cidr: 192.168.217.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 218'
+  vlan: 218
+  alias: 
+  cidr: 192.168.218.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 219'
+  vlan: 219
+  alias: 
+  cidr: 192.168.219.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 220'
+  vlan: 220
+  alias: 
+  cidr: 192.168.220.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 221'
+  vlan: 221
+  alias: 
+  cidr: 192.168.221.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 222'
+  vlan: 222
+  alias: 
+  cidr: 192.168.222.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 223'
+  vlan: 223
+  alias: 
+  cidr: 192.168.223.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 224'
+  vlan: 224
+  alias: 
+  cidr: 192.168.224.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 225'
+  vlan: 225
+  alias: 
+  cidr: 192.168.225.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 226'
+  vlan: 226
+  alias: 
+  cidr: 192.168.226.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 227'
+  vlan: 227
+  alias: 
+  cidr: 192.168.227.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 228'
+  vlan: 228
+  alias: 
+  cidr: 192.168.228.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 229'
+  vlan: 229
+  alias: 
+  cidr: 192.168.229.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 230'
+  vlan: 230
+  alias: 
+  cidr: 192.168.230.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 231'
+  vlan: 231
+  alias: 
+  cidr: 192.168.231.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 232'
+  vlan: 232
+  alias: 
+  cidr: 192.168.232.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 233'
+  vlan: 233
+  alias: 
+  cidr: 192.168.233.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 234'
+  vlan: 234
+  alias: 
+  cidr: 192.168.234.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 235'
+  vlan: 235
+  alias: 
+  cidr: 192.168.235.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 236'
+  vlan: 236
+  alias: 
+  cidr: 192.168.236.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 237'
+  vlan: 237
+  alias: 
+  cidr: 192.168.237.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 238'
+  vlan: 238
+  alias: 
+  cidr: 192.168.238.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 239'
+  vlan: 239
+  alias: 
+  cidr: 192.168.239.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 240'
+  vlan: 240
+  alias: 
+  cidr: 192.168.240.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 241'
+  vlan: 241
+  alias: 
+  cidr: 192.168.241.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 242'
+  vlan: 242
+  alias: 
+  cidr: 192.168.242.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 243'
+  vlan: 243
+  alias: 
+  cidr: 192.168.243.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 244'
+  vlan: 244
+  alias: 
+  cidr: 192.168.244.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 245'
+  vlan: 245
+  alias: 
+  cidr: 192.168.245.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 246'
+  vlan: 246
+  alias: 
+  cidr: 192.168.246.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 247'
+  vlan: 247
+  alias: 
+  cidr: 192.168.247.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 248'
+  vlan: 248
+  alias: 
+  cidr: 192.168.248.1/27
+  description: Vlan for some mysterious machines
+  env: WTF
+- name: '[WTF] VLAN: 249'
+  vlan: 249
+  alias: 
+  cidr: 192.168.249.1/27
+  description: Vlan for some mysterious machines
+  env: WTF

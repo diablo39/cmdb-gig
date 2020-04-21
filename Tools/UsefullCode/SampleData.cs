@@ -16,39 +16,61 @@ namespace UsefullCode
         {
             var generator = new SampleDataGeneror();
 
-            var vlans = new[]
+            var vlans = new List<VLan>
             {
-                new VLan("192.168.11.1/27"){ Env = "DEV", Name="001" }, // 00
-                new VLan("192.168.12.1/27"){ Env = "DEV", Name="002" }, // 01
-                new VLan("192.168.13.1/27"){ Env = "DEV", Name="003" }, // 02
-                new VLan("192.168.14.1/27"){ Env = "DEV", Name="004" }, // 03
-                new VLan("192.168.15.1/27"){ Env = "DEV", Name="005" }, // 04
-                new VLan("192.168.16.1/27"){ Env = "DEV", Name="006" },
-                new VLan("192.168.21.1/27"){ Env = "TST", Name="011" },
-                new VLan("192.168.22.1/27"){ Env = "TST", Name="012" },
-                new VLan("192.168.23.1/27"){ Env = "TST", Name="013" },
-                new VLan("192.168.24.1/27"){ Env = "TST", Name="014" },
-                new VLan("192.168.25.1/27"){ Env = "TST", Name="015" },
-                new VLan("192.168.26.1/27"){ Env = "TST", Name="016" },
-                new VLan("192.168.31.1/27"){ Env = "PRD", Name="021" },
-                new VLan("192.168.32.1/27"){ Env = "PRD", Name="022" },
-                new VLan("192.168.33.1/27"){ Env = "PRD", Name="023" },
-                new VLan("192.168.34.1/27"){ Env = "PRD", Name="024" },
-                new VLan("192.168.35.1/27"){ Env = "PRD", Name="025" },
-                new VLan("192.168.36.1/27"){ Env = "PRD", Name="026" }
+                new VLan("192.168.11.1/27"){ Env = "DEV", Vlan="001" }, // 00
+                new VLan("192.168.12.1/27"){ Env = "DEV", Vlan="002" }, // 01
+                new VLan("192.168.13.1/27"){ Env = "DEV", Vlan="003" }, // 02
+                new VLan("192.168.14.1/27"){ Env = "DEV", Vlan="004" }, // 03
+                new VLan("192.168.15.1/27"){ Env = "DEV", Vlan="005" }, // 04
+                new VLan("192.168.16.1/27"){ Env = "DEV", Vlan="006" }, // 05
+                new VLan("192.168.21.1/27"){ Env = "TST", Vlan="011" }, // 06
+                new VLan("192.168.22.1/27"){ Env = "TST", Vlan="012" },
+                new VLan("192.168.23.1/27"){ Env = "TST", Vlan="013" },
+                new VLan("192.168.24.1/27"){ Env = "TST", Vlan="014" },
+                new VLan("192.168.25.1/27"){ Env = "TST", Vlan="015" },
+                new VLan("192.168.26.1/27"){ Env = "TST", Vlan="016" },
+                new VLan("192.168.31.1/27"){ Env = "PRD", Vlan="021" },
+                new VLan("192.168.32.1/27"){ Env = "PRD", Vlan="022" },
+                new VLan("192.168.33.1/27"){ Env = "PRD", Vlan="023" },
+                new VLan("192.168.34.1/27"){ Env = "PRD", Vlan="024" },
+                new VLan("192.168.35.1/27"){ Env = "PRD", Vlan="025" },
+                new VLan("192.168.36.1/27"){ Env = "PRD", Vlan="026" }
             };
+
+            for (int i = 0; i < 150; i++)
+            {
+
+                vlans.Add(new VLan($"192.168.{i + 100}.1/27") { Env = "WTF", Vlan = (100 + i).ToString("000") });
+            }
 
             generator.AddVlans(vlans);
 
             generator.AddEnvironment("DEV", "Development");
-            generator.AddEnvironment("TST", "Development");
-            generator.AddEnvironment("PRD", "Development");
+            generator.AddEnvironment("TST", "Test");
+            generator.AddEnvironment("PRD", "Production");
+            generator.AddEnvironment("WTF", "Experimental");
 
-            generator.AddMachines(4, "DEV-APP-SERVERS", "DEV", vlans[0..2], "Linux", "Ubuntu 18.10", 4, 32);
+            generator.AddMachines(30, "DEV-APP-SERVERS", "DEV", vlans.ToArray()[0..1], "Linux", "Ubuntu", 4, 32);
+            generator.AddMachines(30, "DEV-DBS-SERVERS", "DEV", vlans.ToArray()[1..2], "Linux", "Ubuntu", 4, 32);
+            generator.AddMachines(30, "DEV-RED-SERVERS", "DEV", vlans.ToArray()[2..3], "Linux", "Ubuntu", 4, 32);
+            generator.AddMachines(30, "DEV-ANS-SERVERS", "DEV", vlans.ToArray()[3..4], "Linux", "Ubuntu", 4, 32);
+            generator.AddMachines(30, "DEV-IDX-SERVERS", "DEV", vlans.ToArray()[4..5], "Linux", "Ubuntu", 4, 32);
+            generator.AddMachines(30, "DEV-BBC-SERVERS", "DEV", vlans.ToArray()[5..6], "Linux", "Ubuntu", 4, 32);
 
-            generator.AddMachines(8, "TST-APP-SERVERS", "TST", vlans[6..8], "Linux", "Ubuntu 18.10", 8, 32);
+            generator.AddMachines(30, "TST-APP-SERVERS", "TST", vlans.ToArray()[6..7], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "TST-DBS-SERVERS", "TST", vlans.ToArray()[7..8], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "TST-ANS-SERVERS", "TST", vlans.ToArray()[8..9], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "TST-IDX-SERVERS", "TST", vlans.ToArray()[9..10], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "TST-IDX-SERVERS", "TST", vlans.ToArray()[10..11], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "TST-BBC-SERVERS", "TST", vlans.ToArray()[11..12], "Linux", "Ubuntu", 8, 32);
 
-            generator.AddMachines(20, "PRD-APP-SERVERS", "PRD", vlans[12..14], "Linux", "Ubuntu 18.10", 8, 32);
+            generator.AddMachines(30, "PRD-APP-SERVERS", "PRD", vlans.ToArray()[12..13], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "PRD-DBS-SERVERS", "PRD", vlans.ToArray()[13..14], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "PRD-ANS-SERVERS", "PRD", vlans.ToArray()[14..15], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "PRD-IDX-SERVERS", "PRD", vlans.ToArray()[15..16], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "PRD-IDX-SERVERS", "PRD", vlans.ToArray()[16..17], "Linux", "Ubuntu", 8, 32);
+            generator.AddMachines(30, "PRD-BBC-SERVERS", "PRD", vlans.ToArray()[17..18], "Linux", "Ubuntu", 8, 32);
 
 
 
@@ -73,12 +95,12 @@ namespace UsefullCode
             _vlans.Add(vlan);
         }
 
-        public void AddVlans(VLan[] vlans)
+        public void AddVlans(IEnumerable<VLan> vlans)
         {
             _vlans.AddRange(vlans);
         }
 
-        public void AddMachines(int count, string name, string env, VLan[] vlans, string operatingSystemClass, string operatingSystem, int vcpu, int memory)
+        public void AddMachines(int count, string name, string env, VLan[] vlans, string operatingSystemClass, string operatingSystem, int vcpu, int memory, string systemVersion = "18.10")
         {
             for (int i = 0; i < count; i++)
             {
@@ -87,42 +109,51 @@ namespace UsefullCode
                 {
                     Name = name + i.ToString("00"),
                     Env = env,
-                    operatingSystem = operatingSystem,
-                    operatingSystemClass = operatingSystemClass,
+                    OperatingSystemDistribution = operatingSystem,
+                    OperatingSystemClass = operatingSystemClass,
+                    OperatingSystemVersion = systemVersion,
                     vcpu = vcpu,
-                    memory = memory
+                    memory = memory,
+                    Description = "Server for tasks :)",
+                    FQDN = name + i.ToString("00") + ".cmdb-gig.localdomain"
                 };
 
-                if(vlans != null)
+                if (vlans != null)
                 {
                     for (int j = 0; j < vlans.Length; j++)
                     {
                         var networkInterface = vlans[j].CreateNetworkInterface();
-                        networkInterface.Name = networkInterface.Name.Substring(0, networkInterface.Name .Length - 2) + (j*10+2).ToString();
+                        networkInterface.Name = networkInterface.Name.Substring(0, networkInterface.Name.Length - 2) + (j * 10 + 2).ToString();
                         machine.NetworkInterfaces.Add(networkInterface);
                     }
                 }
 
+                machine.DataVolumes.Add(new MachineDataVolume { Device="sda", FsType="ext4", Size="10GB", Mount="/" });
+                machine.DataVolumes.Add(new MachineDataVolume { Device="sda", FsType="ext4", Size="10GB", Mount="/tmp" });
+                machine.DataVolumes.Add(new MachineDataVolume { Device="sda", FsType="ext4", Size="10GB", Mount="/var" });
+                machine.DataVolumes.Add(new MachineDataVolume { Device="sda", FsType="ext4", Size="10GB", Mount="/var/log" });
+                machine.DataVolumes.Add(new MachineDataVolume { Device="sda", FsType="ext4", Size="10GB", Mount="/opt" });
+                machine.DataVolumes.Add(new MachineDataVolume { Device="sda", FsType="ext4", Size="10GB", Mount="/data" });
                 _machines.Add(machine);
             }
         }
 
         public void Generate(string path)
         {
-            if(!path.EndsWith("/") || !path.EndsWith("\\"))
+            if (!path.EndsWith("/") || !path.EndsWith("\\"))
             {
                 path = path + Path.DirectorySeparatorChar;
             }
 
-            if(!Directory.Exists(path))
+            if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
 
-            SaveData(_environments, path, "env.yaml");
+            SaveData(_environments, path, "env");
 
-            SaveData(_vlans, path, "vlans.yaml");
-            SaveData(_machines, path, "machines.yaml");
+            SaveData(_vlans, path, "vlans");
+            SaveData(_machines, path, "machines");
         }
 
         private ISerializer GetSerializer()
@@ -133,11 +164,14 @@ namespace UsefullCode
             return serializer;
         }
 
-        private void SaveData<T>(T data, string path, string fileName)
+        private void SaveData<T>(T data, string path, string dataType)
         {
+            var fileName = dataType + ".yaml";
+            var document = new Dictionary<string, object>() { { dataType, data } };
+
             var serializer = GetSerializer();
 
-            var yaml = serializer.Serialize(data);
+            var yaml = serializer.Serialize(document);
 
             var filePath = Path.Combine(path, fileName);
 
