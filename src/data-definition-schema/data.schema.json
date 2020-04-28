@@ -28,6 +28,10 @@
         "Vlan": {
             "type": "object",
             "properties": {
+                "rfc": {
+                    "type": "string",
+                    "description": "id of the ticket (request for change) related"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -51,6 +55,10 @@
         "Machine": {
             "type": "object",
             "properties": {
+                "rfc": {
+                    "type": "string",
+                    "description": "id of the ticket (request for change) related"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -139,6 +147,53 @@
                     "type": "string"
                 },
                 "fstype": {
+                    "type": "string"
+                }
+            }
+        },
+        "firewall-rule": {
+            "type": "object",
+            "properties": {
+                "rfc": {
+                    "type": "string"
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "service": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "source-application": {
+                    "type": "string"
+                },
+                "source-env": {
+                    "type": "string"
+                },
+                "source-ipv4": {
+                    "type": "string"
+                },
+                "source-description": {
+                    "type": "string"
+                },
+                "source-port": {
+                    "type": "string"
+                },
+                "destination-application": {
+                    "type": "string"
+                },
+                "destination-env": {
+                    "type": "string"
+                },
+                "destination-ipv4": {
+                    "type": "string"
+                },
+                "destination-description": {
+                    "type": "string"
+                },
+                "destination-port": {
                     "type": "string"
                 }
             }

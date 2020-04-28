@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using UsefullCode.DataModel;
 using Xunit;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -72,7 +73,7 @@ namespace UsefullCode
             generator.AddMachines(30, "PRD-IDX-SERVERS", "PRD", vlans.ToArray()[16..17], "Linux", "Ubuntu", 8, 32);
             generator.AddMachines(30, "PRD-BBC-SERVERS", "PRD", vlans.ToArray()[17..18], "Linux", "Ubuntu", 8, 32);
 
-
+            generator.AddFirewallRules(FirewallRule.Generate(generator._machines, generator._vlans, 3000));
 
             generator.Generate(@"C:\sencha\cmdb\samples\generated");
         }
@@ -80,10 +81,13 @@ namespace UsefullCode
 
     public class SampleDataGeneror
     {
-        List<Environment> _environments = new List<Environment>();
-        List<VLan> _vlans = new List<VLan>();
+        List<FirewallRule> _firewallRules = new List<FirewallRule>();
 
-        List<Machine> _machines = new List<Machine>();
+        List<Environment> _environments = new List<Environment>();
+        
+        public List<VLan> _vlans = new List<VLan>();
+
+        public List<Machine> _machines = new List<Machine>();
 
         public void AddEnvironment(string name, string description = "")
         {
@@ -154,6 +158,7 @@ namespace UsefullCode
 
             SaveData(_vlans, path, "vlans");
             SaveData(_machines, path, "machines");
+            SaveData(_firewallRules, path, "firewall-rules");
         }
 
         private ISerializer GetSerializer()
@@ -178,8 +183,9 @@ namespace UsefullCode
             File.WriteAllText(filePath, yaml);
         }
 
-
-
-
+        internal void AddFirewallRules(List<FirewallRule> list)
+        {
+            _firewallRules.AddRange(list);
+        }
     }
 }
