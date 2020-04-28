@@ -91,6 +91,13 @@ var app = Sammy('#main', function () {
         activateMenu(context.path);
     });
 
+    this.get("#/firewall-rules/:name", function (context) {
+        var name = this.params['name'];
+        var item = getItem(app.data['firewall-rules'], 'rfc', name);
+        this.render('./app/views/firewall-rules/details.html', item).swap();
+        activateMenu('#/firewall-rules');
+    });
+
 
     this.get("#/machine-templates", function () {
         this.render('./app/views/machine-templates/list.html', {items: app.data["machine-templates"]}).swap();
@@ -116,7 +123,7 @@ var app = Sammy('#main', function () {
         activateMenu('#/machines');
     });
 
-    //this.swap = function(content, callback) {	    	    var context = this;	    context.$element().fadeOut('slow', function() {	        context.$element().html(content);	        context.$element().fadeIn('slow', function() { 	             if (callback) {	                callback.apply();	             }	         }); 	    });	 };
+    this.swap = function(content, callback) {	    	    var context = this;	    context.$element().fadeOut('fast', function() {	        context.$element().html(content);	        context.$element().fadeIn('slow', function() { 	             if (callback) {	                callback.apply();	             }	         }); 	    });	 };
 
     this.get("#/applications", function () {
         this.render('./app/views/common/soon.html', {}).swap();

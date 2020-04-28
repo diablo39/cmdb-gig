@@ -38,7 +38,12 @@ for inventoryFile in inventoryFiles:
             inventoryField = inventory.get(key)
             if inventoryField is not None:
                 resultDocument[key] += inventoryField
-                ddd='v'
+           
+# %%
+idx = 1
+for firewallRule in resultDocument['firewall-rules']:
+    firewallRule['id'] = idx
+    idx += 1
                 
 # %%
 networks = dict()
@@ -56,8 +61,6 @@ for machine in resultDocument['machines']:
         networkInterface['ipv4-cidr']= networks[network]['cidr']
         networkInterface['ipv4-vlan']= networks[network]['vlan']
         
-
-
 # %%
 resultPath = workingDirectory+"cmdb.json"
 

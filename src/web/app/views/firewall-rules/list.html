@@ -13,27 +13,57 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">VLAN</h5>
-                <table class="mb-0 table table-hover">
+
+                <table id="firewallrules" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th style="width: 30px"></th>
+                            <th>RFC</th>
+                            <th>Description</th>
+                            <th>Service</th>
+                            <th>Protocol</th>
                             <th>Source</th>
                             <th>Destination</th>
-                            <th>Description</th>
+                            <th>Destination</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{#items}}
-                        <tr>
-                            <td><a href="#/firewall-rule/{{rfc}}">{{rfc}}</a></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        {{/items}}
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+<script>
+    var i = 0;
+    $('#firewallrules').DataTable({
+        data: app.data['firewall-rules'],
+        columns: [
+            { data: 'id' },
+            { data: 'rfc' },
+            { data: 'description' },
+            { data: 'service' },
+            { data: 'protocol' },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+
+                    return '<span>fdfds</span></br>';
+                }
+            },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+
+                    return '<span>fdfds</span></br>';
+                }
+            }
+        ],
+        buttons: [
+            'colvis',
+            'excel',
+            'print'
+        ]
+    });
+</script>
