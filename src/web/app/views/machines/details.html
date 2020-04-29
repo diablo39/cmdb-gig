@@ -130,3 +130,102 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Incoming traffic</h5>
+        
+                <table class="mb-0 table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px"></th>
+                            <th>RFC</th>
+                            <th>Description</th>
+                            <th>Service</th>
+                            <th>Protocol</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#incoming-traffic}}
+                        <tr>
+                            <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a></td>
+                            <td>{{rfc}}</td>
+                            <td>{{protocol}}</td>
+                            <td>{{description}}</td>
+                            <td>{{service}}</td>
+                            <td>
+                                <span title="Source environment">{{source-env}}</span><br/>
+                                {{source-application}}<br/>
+                                {{source-ipv4}}<br/>
+                                {{source-port}}<br/>
+                                {{source-description}}
+                            </td>
+                            <td>
+                                {{destination-env}}<br/>
+                                {{destination-application}}<br/>
+                                {{destination-ipv4}}<br/>
+                                {{destination-port}}<br/>
+                                {{destination-description}}
+                            </td>
+                        </tr>
+                        {{/incoming-traffic}}
+                    </tbody>
+                </table>
+      
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Outgoing traffic</h5>
+        
+                <table class="mb-0 table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px"></th>
+                            <th>RFC</th>
+                            <th>Description</th>
+                            <th>Service</th>
+                            <th>Protocol</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#outgoing-traffic}}
+                        <tr>
+                            <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a></td>
+                            <td>{{rfc}}</td>
+                            <td>{{protocol}}</td>
+                            <td>{{description}}</td>
+                            <td>{{service}}</td>
+                            <td>
+                                <span title="Source environment">{{source-env}}</span><br/>
+                                {{source-application}}<br/>
+                                {{source-ipv4}}<br/>
+                                {{source-port}}<br/>
+                                {{source-description}}
+                            </td>
+                            <td>
+                                {{destination-env}}<br/>
+                                {{destination-application}}<br/>
+                                {{destination-ipv4}}<br/>
+                                {{destination-port}}<br/>
+                                {{destination-description}}
+                            </td>
+                        </tr>
+                        {{/outgoing-traffic}}
+                    </tbody>
+                </table>
+      
+            </div>
+        </div>
+    </div>
+</div>

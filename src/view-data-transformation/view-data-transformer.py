@@ -26,6 +26,7 @@ resultDocument['vlans'] = []
 resultDocument['firewall-rules'] = []
 resultDocument['machine-groups'] = []
 resultDocument['redis'] = []
+
 # %%
 inventoryFiles = glob.glob(workingDirectory + "**/*.yaml", recursive=True)
 
@@ -40,6 +41,7 @@ for inventoryFile in inventoryFiles:
                 resultDocument[key] += inventoryField
            
 # %%
+
 idx = 1
 for firewallRule in resultDocument['firewall-rules']:
     firewallRule['id'] = idx
@@ -56,11 +58,32 @@ for vlan in resultDocument['vlans']:
 
 # %%
 for machine in resultDocument['machines']:
+    
+    machine['outgoing-traffic'] = []
+    machine['incoming-traffic'] = []
+    
     for networkInterface in machine['network-interfaces']:
         network = networkInterface['ipv4-network']
         networkInterface['ipv4-cidr']= networks[network]['cidr']
         networkInterface['ipv4-vlan']= networks[network]['vlan']
         
+        for firewallRule in resultDocument['firewall-rules']:
+            if firewallRule['source-ipv4'] == networkInterface['ipv4-address']:
+                cp = firewallRule.copy()
+                cp['scope'] = 'IP'
+                machine['outgoing-traffic'].append(cp)
+            if firewallRule['source-ipv4'] == networkInterface['ipv4-cidr']:
+                cp = firewallRule.copy()
+                cp['scope'] = 'VLAN'
+                machine['outgoing-traffic'].append(cp)
+            if firewallRule['destination-ipv4'] == networkInterface['ipv4-address']:
+                cp = firewallRule.copy()
+                cp['scope'] = 'IP'
+                machine['incoming-traffic'].append(cp)
+            if firewallRule['destination-ipv4'] == networkInterface['ipv4-cidr']:
+                cp = firewallRule.copy()
+                cp['scope'] = 'VLAN'
+                machine['incoming-traffic'].append(cp)
 # %%
 resultPath = workingDirectory+"cmdb.json"
 
