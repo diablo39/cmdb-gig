@@ -13,8 +13,7 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Machines</h5>
-                <table class="mb-0 table table-hover">
+                <table id="table" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -27,20 +26,58 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#items}}
-                        <tr>
-                            <td><a href="#/machines/{{name}}">{{name}}</a></td>
-                            <td><a href="#/env/{{env}}">{{env}}</a></td>
-                            <td><a href="#/machine-groups/{{group}}">{{group}}</a></td>
-                            <td>{{vcpu}}</td>
-                            <td>{{memory}}</td>
-                            <td>{{operating-system-distribution}} {{operating-system-version}}</td>
-                            <td>{{description}}</td>
-                        </tr>
-                        {{/items}}
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $('#table').DataTable({
+        data: app.data['machines'],
+        columns: [
+            {
+                data: 'name',
+                render: function (data, type, row) {
+                    return '<a href="#/machines/' + data + '">' + data + '</a>';
+                }
+            },
+            {
+                data: 'env',
+                render: function (data, type, row) {
+                    return '<a href="#/env/' + data + '">' + data + '</a>';
+                }
+            },
+            {
+                data: 'group',
+                render: function (data, type, row) {
+                    if (data)
+                        return '<a href="#/machine-groups/' + data + '">' + data + '</a>';
+                    return '';
+                }
+            },
+            {
+                data: 'vcpu'
+            },
+            {
+                data: 'memory'
+            },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+                    return row['operating-system-distribution'] + ' ' + row['operating-system-version'];
+                }
+            },
+            {
+                data: 'description'
+            }
+        ],
+        buttons: [
+            'colvis',
+            'excel',
+            'print'
+        ]
+    });
+</script>
