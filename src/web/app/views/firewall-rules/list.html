@@ -2,7 +2,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-network text-success">
+                <i class="fas fa-shield-alt text-success">
                 </i>
             </div>
             <div>List of Firewall rules</div>
@@ -13,8 +13,7 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-
-                <table id="firewallrules" class="table table-striped" style="width:100%">
+                <table id="table" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width: 30px"></th>
@@ -24,11 +23,9 @@
                             <th>Protocol</th>
                             <th>Source</th>
                             <th>Destination</th>
-                            <th>Destination</th>
                         </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
             </div>
@@ -36,11 +33,15 @@
     </div>
 </div>
 <script>
-    var i = 0;
-    $('#firewallrules').DataTable({
+    $('#table').DataTable({
         data: app.data['firewall-rules'],
         columns: [
-            { data: 'id' },
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return '<a href="#/firewall-rules/' + data + '" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a>'
+                }
+            },
             { data: 'rfc' },
             { data: 'description' },
             { data: 'service' },
@@ -49,14 +50,22 @@
                 data: 'null',
                 render: function (data, type, row) {
 
-                    return '<span>fdfds</span></br>';
+                    return '<span>' + row['source-env'] + '</span></br>'
+                        + '<span>' + row['source-application'] + '</span></br>'
+                        + '<span>' + row['source-ipv4'] + '</span></br>'
+                        + '<span>' + row['source-port'] + '</span></br>'
+                        + '<span>' + row['source-description'] + '</span></br>';
                 }
             },
             {
                 data: 'null',
                 render: function (data, type, row) {
 
-                    return '<span>fdfds</span></br>';
+                    return '<span>' + row['destination-env'] + '</span></br>'
+                        + '<span>' + row['destination-application'] + '</span></br>'
+                        + '<span>' + row['destination-ipv4'] + '</span></br>'
+                        + '<span>' + row['destination-port'] + '</span></br>'
+                        + '<span>' + row['destination-description'] + '</span></br>';
                 }
             }
         ],

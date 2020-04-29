@@ -87,13 +87,13 @@ var app = Sammy('#main', function () {
     });
 
     this.get("#/firewall-rules", function (context) {
-        this.render('./app/views/firewall-rules/list.html', { "items": app.data['firewall-rules'] }).swap();
+        this.render('./app/views/firewall-rules/list.html').swap();
         activateMenu(context.path);
     });
 
     this.get("#/firewall-rules/:name", function (context) {
         var name = this.params['name'];
-        var item = getItem(app.data['firewall-rules'], 'rfc', name);
+        var item = getItem(app.data['firewall-rules'], 'id', name);
         this.render('./app/views/firewall-rules/details.html', item).swap();
         activateMenu('#/firewall-rules');
     });
@@ -123,7 +123,7 @@ var app = Sammy('#main', function () {
         activateMenu('#/machines');
     });
 
-    this.swap = function(content, callback) {	    	    var context = this;	    context.$element().fadeOut('fast', function() {	        context.$element().html(content);	        context.$element().fadeIn('slow', function() { 	             if (callback) {	                callback.apply();	             }	         }); 	    });	 };
+    // this.swap = function(content, callback) {	    	    var context = this;	    context.$element().fadeOut('fast', function() {	        context.$element().html(content);	        context.$element().fadeIn('slow', function() { 	             if (callback) {	                callback.apply();	             }	         }); 	    });	 };
 
     this.get("#/applications", function () {
         this.render('./app/views/common/soon.html', {}).swap();
