@@ -13,8 +13,7 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">VLAN</h5>
-                <table class="mb-0 table table-hover">
+                <table id="table" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>VLan</th>
@@ -25,18 +24,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#items}}
-                        <tr>
-                            <td><a href="#/vlans/{{vlan}}">{{vlan}}</a></td>
-                            <td>{{name}}</td>
-                            <td><a href="#/env/{{env}}">{{env}}</a></td>
-                            <td>{{cidr}}</td>
-                            <td>{{description}}</td>
-                        </tr>
-                        {{/items}}
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $('#table').DataTable({
+        data: app.data['vlans'],
+        columns: [
+            {
+                data: 'vlan',
+                render: function (data, type, row) {
+                    return '<a href="#/vlans/' + data + '">' + data + '</a>';
+                }
+            },
+            {
+                data: 'name'
+            },
+            {
+                data: 'env',
+                render: function (data, type, row) {
+                    return '<a href="#/env/' + data + '">' + data + '</a>';
+                }
+            },
+            {
+                data: 'cidr'
+            },
+            {
+                data: 'description'
+            }
+        ],
+        buttons: [
+            'colvis',
+            'excel',
+            'print'
+        ]
+    });
+</script>

@@ -88,7 +88,7 @@ var app = Sammy('#main', function () {
 
     this.get("#/firewall-rules", function (context) {
         this.render('./app/views/firewall-rules/list.html').swap();
-        activateMenu(context.path);
+        activateMenu("#/firewall-rules");
     });
 
     this.get("#/firewall-rules/:name", function (context) {
