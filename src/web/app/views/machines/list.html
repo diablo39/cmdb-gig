@@ -41,7 +41,7 @@
             {
                 data: 'name',
                 render: function (data, type, row) {
-                    return '<a href="#/machines/' + data + '">' + data + '</a>';
+                    return '<a href="#/machines/' + row['fqdn'] + '">' + data + '</a>';
                 }
             },
             {

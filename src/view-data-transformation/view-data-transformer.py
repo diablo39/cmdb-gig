@@ -17,6 +17,11 @@ import ipaddress
 workingDirectory = sys.argv[1]
 if( workingDirectory[-1] != "/" ):
     workingDirectory = workingDirectory + "/"
+
+# %%
+outputDirectory = sys.argv[2]
+if( outputDirectory[-1] != "/" ):
+    outputDirectory = outputDirectory + "/"
     
 # %%
 resultDocument = dict()
@@ -57,7 +62,10 @@ for vlan in resultDocument['vlans']:
 
 
 # %%
-for machine in resultDocument['machines']:
+machinesList = []
+machinesDetails = resultDocument['machines']
+    
+for machine in machinesDetails:
     
     machine['outgoing-traffic'] = []
     machine['incoming-traffic'] = []
@@ -84,11 +92,38 @@ for machine in resultDocument['machines']:
                 cp = firewallRule.copy()
                 cp['scope'] = 'VLAN'
                 machine['incoming-traffic'].append(cp)
+    machineListItem = dict()
+    machineListItem['name'] = machine['name']
+    machineListItem['env'] = machine['env']
+    machineListItem['group'] = machine['group']
+    machineListItem['vcpu'] = machine['vcpu']
+    machineListItem['memory'] = machine['memory']
+    machineListItem['fqdn'] = machine['fqdn']
+    machineListItem['description'] = machine['description']
+    machineListItem['operating-system-distribution'] = machine['operating-system-distribution']
+    machineListItem['operating-system-version'] = machine['operating-system-version']
+    machinesList.append(machineListItem)
+
+resultDocument['machines'] = machinesList
+
 # %%
-resultPath = workingDirectory+"cmdb.json"
+resultPath = outputDirectory+"cmdb.json"
 
 if os.path.exists(resultPath):
     os.remove(resultPath)        
 
 with open(resultPath, 'w') as data_file:
     json.dump(resultDocument, data_file)
+
+machinesDirectory = outputDirectory + 'machines/'
+
+if not os.path.exists(machinesDirectory):
+    os.mkdir(machinesDirectory)
+
+for machine in machinesDetails :
+    machinePath = machinesDirectory + machine['fqdn'] + '.json'
+    if os.path.exists(machinePath):
+        os.remove(machinePath)        
+
+    with open(machinePath, 'w') as data_file:
+        json.dump(machine, data_file)        

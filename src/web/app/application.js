@@ -2,40 +2,40 @@
 const customerData = [
     { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
     { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
-  ];
-  
+];
+
 const dbName = "the_name";
 
 var request = indexedDB.open(dbName, 2);
 
-request.onerror = function(event) {
-  // Handle errors.
+request.onerror = function (event) {
+    // Handle errors.
 };
-request.onupgradeneeded = function(event) {
-  var db = event.target.result;
+request.onupgradeneeded = function (event) {
+    var db = event.target.result;
 
-  // Create an objectStore to hold information about our customers. We're
-  // going to use "ssn" as our key path because it's guaranteed to be
-  // unique - or at least that's what I was told during the kickoff meeting.
-  var objectStore = db.createObjectStore("customers", { keyPath: "ssn" });
+    // Create an objectStore to hold information about our customers. We're
+    // going to use "ssn" as our key path because it's guaranteed to be
+    // unique - or at least that's what I was told during the kickoff meeting.
+    var objectStore = db.createObjectStore("customers", { keyPath: "ssn" });
 
-  // Create an index to search customers by name. We may have duplicates
-  // so we can't use a unique index.
-  objectStore.createIndex("name", "name", { unique: false });
+    // Create an index to search customers by name. We may have duplicates
+    // so we can't use a unique index.
+    objectStore.createIndex("name", "name", { unique: false });
 
-  // Create an index to search customers by email. We want to ensure that
-  // no two customers have the same email, so use a unique index.
-  objectStore.createIndex("email", "email", { unique: true });
+    // Create an index to search customers by email. We want to ensure that
+    // no two customers have the same email, so use a unique index.
+    objectStore.createIndex("email", "email", { unique: true });
 
-  // Use transaction oncomplete to make sure the objectStore creation is 
-  // finished before adding data into it.
-  objectStore.transaction.oncomplete = function(event) {
-    // Store values in the newly created objectStore.
-    var customerObjectStore = db.transaction("customers", "readwrite").objectStore("customers");
-    customerData.forEach(function(customer) {
-      customerObjectStore.add(customer);
-    });
-  };
+    // Use transaction oncomplete to make sure the objectStore creation is 
+    // finished before adding data into it.
+    objectStore.transaction.oncomplete = function (event) {
+        // Store values in the newly created objectStore.
+        var customerObjectStore = db.transaction("customers", "readwrite").objectStore("customers");
+        customerData.forEach(function (customer) {
+            customerObjectStore.add(customer);
+        });
+    };
 };
 
 
@@ -100,7 +100,7 @@ var app = Sammy('#main', function () {
 
 
     this.get("#/machine-templates", function () {
-        this.render('./app/views/machine-templates/list.html', {items: app.data["machine-templates"]}).swap();
+        this.render('./app/views/machine-templates/list.html', { items: app.data["machine-templates"] }).swap();
         activateMenu('#/machine-groups');
     });
 
@@ -118,8 +118,14 @@ var app = Sammy('#main', function () {
 
     this.get("#/machines/:name", function (context) {
         var name = this.params['name'];
-        var item = getItem(app.data.machines, 'name', name);
-        this.render('./app/views/machines/details.html', item).swap();
+
+        this.load('./app/data/machines/'+name+'.json')
+            // render a template
+            .render('./app/views/machines/details.html')
+            // swap the DOM with the new content
+            .swap();
+        // var item = getItem(app.data.machines, 'name', name);
+        // this.render('./app/views/machines/details.html', item).swap();
         activateMenu('#/machines');
     });
 
@@ -182,7 +188,7 @@ function postProcessData(data) {
 }
 
 function processMachines(data) {
-    
+
     var machines = data['machines'];
     var templates = data['machine-templates'];
 
@@ -192,7 +198,7 @@ function processMachines(data) {
 
         for (key in template) {
             if (key === "name") continue;
-            
+
             var value = template[key];
 
             if (machine[key] === undefined || machine[key] === null) {

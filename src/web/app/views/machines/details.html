@@ -136,10 +136,11 @@
             <div class="card-body">
                 <h5 class="card-title">Incoming traffic</h5>
         
-                <table class="mb-0 table table-hover">
+                <table class="mytable table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width: 30px"></th>
+                            <th>Scope</th>
                             <th>RFC</th>
                             <th>Description</th>
                             <th>Service</th>
@@ -152,6 +153,7 @@
                         {{#incoming-traffic}}
                         <tr>
                             <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a></td>
+                            <td>{{scope}}</td>
                             <td>{{rfc}}</td>
                             <td>{{protocol}}</td>
                             <td>{{description}}</td>
@@ -186,10 +188,11 @@
             <div class="card-body">
                 <h5 class="card-title">Outgoing traffic</h5>
         
-                <table class="mb-0 table table-hover">
+                <table class="mytable table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width: 30px"></th>
+                            <th>Scope</th>
                             <th>RFC</th>
                             <th>Description</th>
                             <th>Service</th>
@@ -202,6 +205,7 @@
                         {{#outgoing-traffic}}
                         <tr>
                             <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a></td>
+                            <td>{{scope}}</td>
                             <td>{{rfc}}</td>
                             <td>{{protocol}}</td>
                             <td>{{description}}</td>
@@ -229,3 +233,6 @@
         </div>
     </div>
 </div>
+<script>
+    $('.mytable').DataTable();
+</script>
