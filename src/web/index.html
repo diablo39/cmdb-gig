@@ -12,10 +12,9 @@
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="./main.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-    
+
 </head>
 
 <body>
@@ -177,20 +176,109 @@
 
             <div class="app-main__outer">
                 <div class="app-main__inner" id="main">
-        
+
 
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="./assets/libs/architectui/main.js"></script>
+    <!-- <script type="text/javascript" src="./assets/libs/architectui/main.js"></script> -->
     <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.3/metisMenu.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
     <script type="text/javascript" src="./assets/libs/sammy/sammy-latest.min.js"></script>
     <script type="text/javascript" src="./assets/libs/sammy/plugins/sammy.mustache-latest.min.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
 
+        $(document).ready(() => {
+
+            // Sidebar Menu
+
+            setTimeout(function () {
+                $(".vertical-nav-menu").metisMenu();
+            }, 100);
+
+            // Search wrapper trigger
+
+            $('.search-icon').click(function () {
+                $(this).parent().parent().addClass('active');
+            });
+
+            $('.search-wrapper .close').click(function () {
+                $(this).parent().removeClass('active');
+            });
+
+            // Stop Bootstrap 4 Dropdown for closing on click inside
+
+            $('.dropdown-menu').on('click', function (event) {
+                var events = $._data(document, 'events') || {};
+                events = events.click || [];
+                for (var i = 0; i < events.length; i++) {
+                    if (events[i].selector) {
+
+                        if ($(event.target).is(events[i].selector)) {
+                            events[i].handler.call(event.target, event);
+                        }
+
+                        $(event.target).parents(events[i].selector).each(function () {
+                            events[i].handler.call(this, event);
+                        });
+                    }
+                }
+                event.stopPropagation(); //Always stop propagation
+            });
+
+            $(function () {
+                $('[data-toggle="popover"]').popover();
+            });
+
+            // BS4 Tooltips
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+            $('.mobile-toggle-nav').click(function () {
+                $(this).toggleClass('is-active');
+                $('.app-container').toggleClass('sidebar-mobile-open');
+            });
+
+            $('.mobile-toggle-header-nav').click(function () {
+                $(this).toggleClass('active');
+                $('.app-header__content').toggleClass('header-mobile-open');
+            });
+
+            // Responsive
+
+            var resizeClass = function () {
+                var win = document.body.clientWidth;
+                if (win < 1250) {
+                    $('.app-container').addClass('closed-sidebar-mobile closed-sidebar');
+                } else {
+                    $('.app-container').removeClass('closed-sidebar-mobile closed-sidebar');
+                }
+            };
+
+
+            $(window).on('resize', function () {
+                resizeClass();
+            });
+
+            resizeClass();
+
+        });
+    </script>
     <script type="text/javascript" src="./app/application.js"></script>
 </body>
 
