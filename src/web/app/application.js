@@ -158,8 +158,11 @@ var app = Sammy('#main', function () {
 
 // start the application
 
-$.get("./app/data/cmdb.json", function (data) {
+$.get("./app/data/cmdb.json?c=" + new Date().getTime(), function (data) {
     app.data = postProcessData(data);
+
+    $('#data-generated').text(app.data['generated']);
+
     app.run('#/');
 }).fail(function () {
     alert("fetching data failed");
