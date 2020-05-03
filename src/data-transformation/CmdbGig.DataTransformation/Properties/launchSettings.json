@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "CmdbGig.DataTransformation": {
-      "commandName": "Project",
-      "commandLineArgs": "C:\\sencha\\cmdb\\samples\\generated"
-    }
-  }
-}
