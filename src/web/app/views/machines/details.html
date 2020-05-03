@@ -234,5 +234,17 @@
     </div>
 </div>
 <script>
-    $('.mytable').DataTable();
+    $('.mytable').DataTable({
+        order: [[1, 'asc']],
+        rowGroup: {
+            dataSrc: 1
+        },
+        // "columnDefs": [
+        //     {
+        //         "targets": [ 1 ],
+        //         "visible": false,
+        //         "searchable": false
+        //     }
+        // ]
+    });
 </script>
