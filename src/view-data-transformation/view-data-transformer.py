@@ -12,6 +12,7 @@ import json
 import yaml
 import os
 import ipaddress
+import datetime
 
 # %%
 workingDirectory = sys.argv[1]
@@ -25,6 +26,7 @@ if( outputDirectory[-1] != "/" ):
     
 # %%
 resultDocument = dict()
+resultDocument['generated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 resultDocument['env'] = []
 resultDocument['machines'] = []
 resultDocument['vlans'] = []
