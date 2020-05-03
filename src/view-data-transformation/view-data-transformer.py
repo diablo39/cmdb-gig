@@ -12,7 +12,6 @@ import json
 import yaml
 import os
 import ipaddress
-import datetime
 
 # %%
 workingDirectory = sys.argv[1]
@@ -26,7 +25,6 @@ if( outputDirectory[-1] != "/" ):
     
 # %%
 resultDocument = dict()
-resultDocument['generated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 resultDocument['env'] = []
 resultDocument['machines'] = []
 resultDocument['vlans'] = []
@@ -73,37 +71,41 @@ for machine in machinesDetails:
     machine['incoming-traffic'] = []
     
     for networkInterface in machine['network-interfaces']:
-        network = networkInterface['ipv4-network']
-        networkInterface['ipv4-cidr']= networks[network]['cidr']
-        networkInterface['ipv4-vlan']= networks[network]['vlan']
         
-        for firewallRule in resultDocument['firewall-rules']:
-            if firewallRule['source-ipv4'] == networkInterface['ipv4-address']:
-                cp = firewallRule.copy()
-                cp['scope'] = 'IP'
-                machine['outgoing-traffic'].append(cp)
-            if firewallRule['source-ipv4'] == networkInterface['ipv4-cidr']:
-                cp = firewallRule.copy()
-                cp['scope'] = 'VLAN'
-                machine['outgoing-traffic'].append(cp)
-            if firewallRule['destination-ipv4'] == networkInterface['ipv4-address']:
-                cp = firewallRule.copy()
-                cp['scope'] = 'IP'
-                machine['incoming-traffic'].append(cp)
-            if firewallRule['destination-ipv4'] == networkInterface['ipv4-cidr']:
-                cp = firewallRule.copy()
-                cp['scope'] = 'VLAN'
-                machine['incoming-traffic'].append(cp)
+        network = networkInterface['ipv4-network']
+        if network in networks :
+            currentNetwork = networks[network]
+            networkInterface['ipv4-cidr']= networks[network]['cidr']
+            networkInterface['ipv4-vlan']= networks[network]['vlan']
+        
+            for firewallRule in resultDocument['firewall-rules']:
+                if firewallRule['source-ipv4'] == networkInterface['ipv4-address']:
+                    cp = firewallRule.copy()
+                    cp['scope'] = 'IP'
+                    machine['outgoing-traffic'].append(cp)
+                if firewallRule['source-ipv4'] == networkInterface['ipv4-cidr']:
+                    cp = firewallRule.copy()
+                    cp['scope'] = 'VLAN'
+                    machine['outgoing-traffic'].append(cp)
+                if firewallRule['destination-ipv4'] == networkInterface['ipv4-address']:
+                    cp = firewallRule.copy()
+                    cp['scope'] = 'IP'
+                    machine['incoming-traffic'].append(cp)
+                if firewallRule['destination-ipv4'] == networkInterface['ipv4-cidr']:
+                    cp = firewallRule.copy()
+                    cp['scope'] = 'VLAN'
+                    machine['incoming-traffic'].append(cp)
+                    
     machineListItem = dict()
-    machineListItem['name'] = machine['name']
-    machineListItem['env'] = machine['env']
-    machineListItem['group'] = machine['group']
-    machineListItem['vcpu'] = machine['vcpu']
-    machineListItem['memory'] = machine['memory']
-    machineListItem['fqdn'] = machine['fqdn']
-    machineListItem['description'] = machine['description']
-    machineListItem['operating-system-distribution'] = machine['operating-system-distribution']
-    machineListItem['operating-system-version'] = machine['operating-system-version']
+    machineListItem['name'] = machine.get('name')
+    machineListItem['env'] = machine.get('env')
+    machineListItem['group'] = machine.get('group')
+    machineListItem['vcpu'] = machine.get('vcpu')
+    machineListItem['memory'] = machine.get('memory')
+    machineListItem['fqdn'] = machine.get('fqdn')
+    machineListItem['description'] = machine.get('description')
+    machineListItem['operating-system-distribution'] = machine.get('operating-system-distribution')
+    machineListItem['operating-system-version'] = machine.get('operating-system-version')
     machinesList.append(machineListItem)
 
 resultDocument['machines'] = machinesList
