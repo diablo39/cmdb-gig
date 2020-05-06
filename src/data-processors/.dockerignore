@@ -2,3 +2,5 @@ Dockerfile
 web.config
 
 app/data/
+
+.spyproject
