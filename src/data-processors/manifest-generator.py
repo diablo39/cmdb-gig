@@ -19,7 +19,7 @@ if( workingDirectory[-1] != "/" ):
 
 # %%
 
-hash = dirhash(workingDirectory, 'sha1')
+hash = dirhash(workingDirectory, 'sha1', excluded_files=['manifest.json'])
 
 # %%
 
