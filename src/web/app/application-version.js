@@ -1,0 +1,1 @@
+window.cmdbVersion = new Date().getTime();

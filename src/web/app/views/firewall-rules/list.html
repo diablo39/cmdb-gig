@@ -43,8 +43,11 @@
     </div>
 </div>
 <script>
+
+    var data = app.data['firewall-rules'].slice(0, 100);
+
     var table = $('#table').DataTable({
-        data: app.data['firewall-rules'],
+        data: data,
         columns: [
             {
                 data: 'id',
@@ -85,6 +88,17 @@
             'print'
         ]
     });
+
+    window.setTimeout(function () {
+        for (var i = 100; i < app.data['firewall-rules'].length; i++) {
+
+            table.row.add(app.data['firewall-rules'][i]);
+        }
+
+        table.draw();
+    }, 0);
+
+
 
     // table.columns().flatten().each(function (colIdx) {
     //     // Create the select list and search operation

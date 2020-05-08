@@ -1,172 +1,137 @@
-// This is what our customer data looks like.
-const customerData = [
-    { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
-    { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
-];
-
-const dbName = "the_name";
-
-var request = indexedDB.open(dbName, 2);
-
-request.onerror = function (event) {
-    // Handle errors.
-};
-request.onupgradeneeded = function (event) {
-    var db = event.target.result;
-
-    // Create an objectStore to hold information about our customers. We're
-    // going to use "ssn" as our key path because it's guaranteed to be
-    // unique - or at least that's what I was told during the kickoff meeting.
-    var objectStore = db.createObjectStore("customers", { keyPath: "ssn" });
-
-    // Create an index to search customers by name. We may have duplicates
-    // so we can't use a unique index.
-    objectStore.createIndex("name", "name", { unique: false });
-
-    // Create an index to search customers by email. We want to ensure that
-    // no two customers have the same email, so use a unique index.
-    objectStore.createIndex("email", "email", { unique: true });
-
-    // Use transaction oncomplete to make sure the objectStore creation is 
-    // finished before adding data into it.
-    objectStore.transaction.oncomplete = function (event) {
-        // Store values in the newly created objectStore.
-        var customerObjectStore = db.transaction("customers", "readwrite").objectStore("customers");
-        customerData.forEach(function (customer) {
-            customerObjectStore.add(customer);
-        });
-    };
-};
-
-
 // initialize the application
-var app = Sammy('#main', function () {
+window.app = Sammy('#main', function () {
     // include a plugin
     this.use('Mustache', 'html');
 
     this.get('#/', function () {
         this.render('./app/views/home.html', {}).swap();
         activateMenu('#/');
-
-        // load some data
-
-        //   this.load('posts.json')
-        //       // render a template
-        //       .renderEach('post.mustache')
-        //       // swap the DOM with the new content
-        //       .swap();
     });
 
     this.get("#/env", function () {
-        this.render('./app/views/env/list.html', { "items": app.data.env }).swap();
+        this.render('./app/views/env/list.html' + this.app.qs(true), { "items": app.data.env }).swap();
         activateMenu('#/env');
     });
 
     this.get("#/env/:name", function (context) {
         var name = this.params['name'];
         var item = getItem(app.data.env, 'name', name);
-        this.render('./app/views/env/details.html', item).swap();
+        this.render('./app/views/env/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/env');
     });
 
     this.get("#/vlans", function () {
-        this.render('./app/views/vlans/list.html', { "items": app.data.vlans }).swap();
+        this.render('./app/views/vlans/list.html' + this.app.qs(true), { "items": app.data.vlans }).swap();
         activateMenu('#/vlans');
     });
 
     this.get("#/vlans/:name", function (context) {
         var name = this.params['name'];
         var item = getItem(app.data.vlans, 'vlan', name);
-        this.render('./app/views/vlans/details.html', item).swap();
+        this.render('./app/views/vlans/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/vlans');
     });
 
     this.get("#/f5-vs", function () {
-        this.render('./app/views/common/soon.html', {}).swap();
+        this.render('./app/views/common/soon.html' + this.app.qs(true), {}).swap();
         activateMenu('#/f5-vs');
     });
 
     this.get("#/firewall-rules", function (context) {
-        this.render('./app/views/firewall-rules/list.html').swap();
+        this.render('./app/views/firewall-rules/list.html' + this.app.qs(true)).swap();
         activateMenu("#/firewall-rules");
     });
 
     this.get("#/firewall-rules/:name", function (context) {
         var name = this.params['name'];
         var item = getItem(app.data['firewall-rules'], 'id', name);
-        this.render('./app/views/firewall-rules/details.html', item).swap();
+        this
+            .render('./app/views/firewall-rules/details.html' + this.app.qs(true), item)
+            .swap();
         activateMenu('#/firewall-rules');
     });
 
 
     this.get("#/machine-templates", function () {
-        this.render('./app/views/machine-templates/list.html', { items: app.data["machine-templates"] }).swap();
+        this.render('./app/views/machine-templates/list.html' + this.app.qs(true), { items: app.data["machine-templates"] }).swap();
         activateMenu('#/machine-groups');
     });
 
     this.get("#/machine-templates/:name", function () {
         var name = this.params['name'];
         var item = getItem(app.data["machine-templates"], 'name', name);
-        this.render('./app/views/machine-templates/details.html', item).swap();
+        this.render('./app/views/machine-templates/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/machine-groups');
     });
 
     this.get("#/machines", function () {
-        this.render('./app/views/machines/list.html', { "items": app.data.machines }).swap();
+        this.render('./app/views/machines/list.html' + this.app.qs(true), { "items": app.data.machines }).swap();
         activateMenu('#/machines');
     });
 
     this.get("#/machines/:name", function (context) {
         var name = this.params['name'];
 
-        this.load('./app/data/machines/'+name+'.json')
-            // render a template
-            .render('./app/views/machines/details.html')
-            // swap the DOM with the new content
+        this.load('./app/data/machines/' + name + '.json' + this.app.qs())
+            .render('./app/views/machines/details.html' + this.app.qs(true))
             .swap();
-        // var item = getItem(app.data.machines, 'name', name);
-        // this.render('./app/views/machines/details.html', item).swap();
         activateMenu('#/machines');
     });
 
     // this.swap = function(content, callback) {	    	    var context = this;	    context.$element().fadeOut('fast', function() {	        context.$element().html(content);	        context.$element().fadeIn('slow', function() { 	             if (callback) {	                callback.apply();	             }	         }); 	    });	 };
 
     this.get("#/applications", function () {
-        this.render('./app/views/common/soon.html', {}).swap();
+        this.render('./app/views/common/soon.html' + this.app.qs(true), {}).swap();
         activateMenu('#/applications');
     });
 
     this.get("#/redis", function () {
-        this.render('./app/views/redis/list.html', { "items": app.data.redis }).swap();
+        this.render('./app/views/redis/list.html' + this.app.qs(true), { "items": app.data.redis }).swap();
         activateMenu('#/redis');
     });
 
     this.get("#/redis/:name", function (context) {
         var name = this.params['name'];
         var item = getItem(app.data.redis, 'name', name);
-        this.render('./app/views/redis/details.html', item).swap();
+        this.render('./app/views/redis/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/redis');
     });
 
 
     this.get("#/soon", function () {
-        this.render('./app/views/common/soon.html', {}).swap();
+        this.render('./app/views/common/soon.html' + this.app.qs(true), {}).swap();
         activateMenu('#/soon');
     });
+
 });
+
+window.app.qs = function (template) {
+
+    return "?hash=" + (template ? (window.cmdbVersion === 'devversion' ? new Date().getTime() : window.cmdbVersion) : this.hash);
+}
 
 
 // start the application
 
-$.get("./app/data/cmdb.json?c=" + new Date().getTime(), function (data) {
-    app.data = postProcessData(data);
+$.get("./app/data/manifest.json?c=" + new Date().getTime(), function (manifest) {
 
-    $('#data-generated').text(app.data['generated']);
+    app.hash = manifest.hash;
 
-    app.run('#/');
-}).fail(function () {
-    alert("fetching data failed");
+    $.get("./app/data/cmdb.json?c=" + manifest.hash, function (data) {
+        app.data = postProcessData(data);
+
+        $('#data-generated').text(app.data['generated']);
+
+        app.run('#/');
+    }, 'json').fail(function () {
+        alert("Fetching data failed");
+    });
+
+}, 'json').fail(function () {
+    alert("Fetching data failed");
 });
+
+
 
 
 function getItem(array, keyName, value) {
