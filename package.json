@@ -8,7 +8,7 @@
     "start": "http-server ./src/web --port 8083",
     "docker-start": "docker run -p 8084:80 cmdb",
     "docker-build-web": "docker build -t cmdb ./src/web",
-    "docker-build-web-run": "docker build -t cmdb ./src/web && docker run -p 8084:80 --rm -it cmdb"
+    "docker-build-run": "docker run -p 8084:80 --rm -it -v $PWD/app/data:/data cmdb"
   },
   "author": "",
   "license": "MIT",

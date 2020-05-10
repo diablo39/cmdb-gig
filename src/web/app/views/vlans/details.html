@@ -51,20 +51,243 @@
     </div>
 </div>
 
-<!-- <div class="app-page-title">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Library</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
-      </nav>
-</div>
 <div class="row">
     <div class="col-lg-12">
-        <button type="button" title="Go Back" class="btn-shadow mr-3 btn btn-info col-lg-12" onclick="window.location='#/vlans'">
-            <i class="fa fa-arrow-left"></i> To List
-        </button>
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Machines</h5>
+                <table id="table" class="machines table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Environment</th>
+                            <th>Group</th>
+                            <th>vCPU</th>
+                            <th>Memory</th>
+                            <th>Operating system</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
- -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Incoming traffic</h5>
+
+                <table id="incomingTraffic" class="mytable table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px"></th>
+                            <th>Scope</th>
+                            <th>RFC</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Outgoing traffic</h5>
+
+                <table id="outgoingTraffic" class="mytable table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px"></th>
+                            <th>Scope</th>
+                            <th>RFC</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#outgoingTraffic').DataTable({
+        data: window.app.currentItem['outgoing-traffic'],
+        columns: [
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return '<a href="#/firewall-rules/' + data + '" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a>'
+                }
+            },
+            { data: 'scope' },
+            { data: 'rfc' },
+            { data: 'description' },
+            { data: 'service' },
+            { data: 'protocol' },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+
+                    return '<span>' + row['source-env'] + '</span></br>'
+                        + '<span>' + row['source-application'] + '</span></br>'
+                        + '<span>' + row['source-ipv4'] + '</span></br>'
+                        + '<span>' + row['source-port'] + '</span></br>'
+                        + '<span>' + row['source-description'] + '</span></br>';
+                }
+            },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+
+                    return '<span>' + row['destination-env'] + '</span></br>'
+                        + '<span>' + row['destination-application'] + '</span></br>'
+                        + '<span>' + row['destination-ipv4'] + '</span></br>'
+                        + '<span>' + row['destination-port'] + '</span></br>'
+                        + '<span>' + row['destination-description'] + '</span></br>';
+                }
+            }
+        ],
+        buttons: [
+            'colvis',
+            'excel',
+            'print'
+        ],
+        order: [[1, 'asc']],
+        rowGroup: {
+            dataSrc: 'scope'
+        },
+    });
+
+    $('#incomingTraffic').DataTable({
+        data: window.app.currentItem['outgoing-traffic'],
+        order: [[1, 'asc']],
+        rowGroup: {
+            dataSrc: 'scope'
+        },
+        columns: [
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return '<a href="#/firewall-rules/' + data + '" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a>'
+                }
+            },
+            { data: 'scope' },
+            { data: 'rfc' },
+            { data: 'description' },
+            { data: 'service' },
+            { data: 'protocol' },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+
+                    return '<span>' + row['source-env'] + '</span></br>'
+                        + '<span>' + row['source-application'] + '</span></br>'
+                        + '<span>' + row['source-ipv4'] + '</span></br>'
+                        + '<span>' + row['source-port'] + '</span></br>'
+                        + '<span>' + row['source-description'] + '</span></br>';
+                }
+            },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+
+                    return '<span>' + row['destination-env'] + '</span></br>'
+                        + '<span>' + row['destination-application'] + '</span></br>'
+                        + '<span>' + row['destination-ipv4'] + '</span></br>'
+                        + '<span>' + row['destination-port'] + '</span></br>'
+                        + '<span>' + row['destination-description'] + '</span></br>';
+                }
+            }
+        ],
+        buttons: [
+            'colvis',
+            'excel',
+            'print'
+        ]
+    });
+
+    // $('.mytable').DataTable({
+    //     order: [[1, 'asc']],
+    //     rowGroup: {
+    //         dataSrc: 1
+    //     },
+    //     // "columnDefs": [
+    //     //     {
+    //     //         "targets": [ 1 ],
+    //     //         "visible": false,
+    //     //         "searchable": false
+    //     //     }
+    //     // ]
+    // });
+
+
+    $('.machines').DataTable({
+        data: window.app.currentItem['machines'],
+        columns: [
+            {
+                data: 'name',
+                render: function (data, type, row) {
+                    return '<a href="#/machines/' + row['fqdn'] + '">' + data + '</a>';
+                }
+            },
+            {
+                data: 'env',
+                render: function (data, type, row) {
+                    return '<a href="#/env/' + data + '">' + data + '</a>';
+                }
+            },
+            {
+                data: 'group',
+                render: function (data, type, row) {
+                    if (data)
+                        return '<a href="#/machine-groups/' + data + '">' + data + '</a>';
+                    return '';
+                }
+            },
+            {
+                data: 'vcpu'
+            },
+            {
+                data: 'memory'
+            },
+            {
+                data: 'null',
+                render: function (data, type, row) {
+                    return row['operating-system-distribution'] + ' ' + row['operating-system-version'];
+                }
+            },
+            {
+                data: 'description'
+            }
+        ],
+        buttons: [
+            'colvis',
+            'excel',
+            'print'
+        ]
+    });
+</script>

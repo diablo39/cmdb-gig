@@ -27,8 +27,18 @@ window.app = Sammy('#main', function () {
 
     this.get("#/vlans/:name", function (context) {
         var name = this.params['name'];
-        var item = getItem(app.data.vlans, 'vlan', name);
-        this.render('./app/views/vlans/details.html' + this.app.qs(true), item).swap();
+        // var item = getItem(app.data.vlans, 'vlan', name);
+        
+        // this.render('./app/views/vlans/details.html' + this.app.qs(true), item).swap();
+
+        this
+            .load('./app/data/vlans/' + name + '.json' + this.app.qs())
+            .then(function (data) {
+                window.app.currentItem = data;
+            })
+            .render('./app/views/vlans/details.html' + this.app.qs(true))
+            .swap();
+
         activateMenu('#/vlans');
     });
 
@@ -72,7 +82,11 @@ window.app = Sammy('#main', function () {
     this.get("#/machines/:name", function (context) {
         var name = this.params['name'];
 
-        this.load('./app/data/machines/' + name + '.json' + this.app.qs())
+        this
+            .load('./app/data/machines/' + name + '.json' + this.app.qs())
+            .then(function (data) {
+                debugger;
+            })
             .render('./app/views/machines/details.html' + this.app.qs(true))
             .swap();
         activateMenu('#/machines');
