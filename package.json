@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server ./src/web --port 8083",
-    "docker-start": "docker run -p 8084:80 cmdb",
-    "docker-build-web": "docker build -t cmdb ./src/web",
-    "docker-build-run": "docker run -p 8084:80 --rm -it -v $PWD/app/data:/data cmdb"
+    "docker-web-build": "docker build -t cmdb ./src/web",
+    "docker-web-run": "docker run -p 8084:80 --rm -it -v $PWD/app/data:/data cmdb"
   },
   "author": "",
   "license": "MIT",
