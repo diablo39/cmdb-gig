@@ -27,10 +27,6 @@ window.app = Sammy('#main', function () {
 
     this.get("#/vlans/:name", function (context) {
         var name = this.params['name'];
-        // var item = getItem(app.data.vlans, 'vlan', name);
-        
-        // this.render('./app/views/vlans/details.html' + this.app.qs(true), item).swap();
-
         this
             .load('./app/data/vlans/' + name + '.json' + this.app.qs())
             .then(function (data) {
@@ -85,7 +81,7 @@ window.app = Sammy('#main', function () {
         this
             .load('./app/data/machines/' + name + '.json' + this.app.qs())
             .then(function (data) {
-                debugger;
+                window.app.currentItem = data;
             })
             .render('./app/views/machines/details.html' + this.app.qs(true))
             .swap();
