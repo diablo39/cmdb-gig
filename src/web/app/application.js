@@ -50,7 +50,7 @@ window.app = Sammy('#main', function () {
 
     this.get("#/firewall-rules/:name", function (context) {
         var name = this.params['name'];
-        var item = getItem(app.data['firewall-rules'], 'id', name);
+        var item = getFirewallRule(app.data['firewall-rules'], 'id', name);
         this
             .render('./app/views/firewall-rules/details.html' + this.app.qs(true), item)
             .swap();
@@ -151,6 +151,19 @@ function getItem(array, keyName, value) {
             return item;
         }
     }
+    return null;
+}
+
+function getFirewallRule(array,keyName, value) {
+    for(var i=0; i< array.length; i++) {
+        for(var j = 0; j< array[i]['rules'].length; j++) {
+            var item = array[i]['rules'][j];
+            if (item[keyName] == value) {
+                return item;
+            }
+        }
+    }
+
     return null;
 }
 
