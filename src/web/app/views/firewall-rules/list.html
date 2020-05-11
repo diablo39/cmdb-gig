@@ -1,3 +1,17 @@
+<style>
+    td.details-control i.hide {
+        display: none;
+    }
+
+    tr.shown td.details-control i.show {
+        display: none;
+    }
+
+    tr.shown td.details-control i.hide {
+        display: inherit;
+    }
+</style>
+
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -16,27 +30,17 @@
                 <table id="table" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 30px"></th>
-                            <th>RFC</th>
-                            <th>Description</th>
-                            <th>Service</th>
-                            <th>Protocol</th>
-                            <th>Source</th>
-                            <th>Destination</th>
+                            <th style="width: 25px;"></th>
+                            <!-- <th>Source host</th> -->
+                            <th>Source IP</th>
+                            <th>Source Env</th>
+                            <!-- <th>Destination host</th> -->
+                            <th>Destination IP</th>
+                            <th>Destination Env</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
-                    <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>
@@ -48,39 +52,74 @@
 
     var table = $('#table').DataTable({
         data: data,
+        order: [[1, 'asc']],
         columns: [
             {
-                data: 'id',
+                "className": 'details-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": '',
                 render: function (data, type, row) {
-                    return '<a href="#/firewall-rules/' + data + '" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a>'
+                    return '<i class="fas fa-plus show"></i><i class="fas fa-minus hide"></i>'
                 }
             },
-            { data: 'rfc' },
-            { data: 'description' },
-            { data: 'service' },
-            { data: 'protocol' },
+            // { data: 'source-host' },
+            { data: 'source-ipv4' },
+            { data: 'source-env' },
+            // { data: 'destination-host' },
+            { data: 'destination-ipv4' },
+            { data: 'destination-env' },
             {
-                data: 'null',
-                render: function (data, type, row) {
+                "data": null,
+                "visible": false,
+                "render": function(data, type, row) {
+                    var result = "";
+                    for(var rule in row['rules']) {
+                        result += " " + row['rules'][rule]['destination-port'] + " ";
+                        result += " " + row['rules'][rule]['destination-description'] + " ";
+                        result += " " + row['rules'][rule]['destination-application'] + " ";
+                        result += " " + row['rules'][rule]['source-port'] + " ";
+                        result += " " + row['rules'][rule]['source-description'] + " ";
+                        result += " " + row['rules'][rule]['source-application'] + " ";
+                        result += " " + row['rules'][rule]['rfc'] + " ";
+                        result += " " + row['rules'][rule]['description'] + " ";
+                    }
 
-                    return '<span>' + row['source-env'] + '</span></br>'
-                        + '<span>' + row['source-application'] + '</span></br>'
-                        + '<span>' + row['source-ipv4'] + '</span></br>'
-                        + '<span>' + row['source-port'] + '</span></br>'
-                        + '<span>' + row['source-description'] + '</span></br>';
-                }
-            },
-            {
-                data: 'null',
-                render: function (data, type, row) {
-
-                    return '<span>' + row['destination-env'] + '</span></br>'
-                        + '<span>' + row['destination-application'] + '</span></br>'
-                        + '<span>' + row['destination-ipv4'] + '</span></br>'
-                        + '<span>' + row['destination-port'] + '</span></br>'
-                        + '<span>' + row['destination-description'] + '</span></br>';
+                    return result;
                 }
             }
+            // {
+            //     data: 'id',
+            //     render: function (data, type, row) {
+            //         return '<a href="#/firewall-rules/' + data + '" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a>'
+            //     }
+            // },
+            // { data: 'rfc' },
+            // { data: 'description' },
+            // { data: 'service' },
+            // { data: 'protocol' },
+            // {
+            //     data: 'null',
+            //     render: function (data, type, rule) {
+
+            //         return '<span>' + rule['source-env']             + '</span></br>'
+            //              + '<span>' + rule['source-application']           + '</span></br>'
+            //              + '<span>' + rule['source-ipv4']            + '</span></br>'
+            //              + '<span>' + rule['source-port']              + '</span></br>'
+            //              + '<span>' + rule['source-description']     + '</span></br>';
+            //     }
+            // },
+            // {
+            //     data: 'null',
+            //     render: function (data, type, rule) {
+
+            //         return '<span>' + rule['destination-env']            + '</span></br>'
+            //              + '<span>' + rule['destination-application']    + '</span></br>'
+            //              + '<span>' + rule['destination-ipv4']           + '</span></br>'
+            //              + '<span>' + rule['destination-port']           + '</span></br>'
+            //              + '<span>' + rule['destination-description']    + '</span></br>';
+            //     }
+            // }
         ],
         buttons: [
             'colvis',
@@ -88,6 +127,49 @@
             'print'
         ]
     });
+
+    // Add event listener for opening and closing details
+    $('#table tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+
+    function format(d) {
+        // `d` is the original data object for the row
+        var result = '<table class="table table-striped">';
+        result += "<thead><tr><th>RFC</th><th>Description</th><th>Protocol</th><th>Service</th><th>Src port</th><th>Src description</th><th>Src Application</th><th>Dest port</th><th>Dest description</th><th>Dest application</th></tr></thead>"
+        for (var i = 0; i < d['rules'].length; i++) {
+            var rule = d.rules[i];
+            result += '<tr>';
+            // result += '<td>' + '<a href="#/firewall-rules/' + rule['id'] + '" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a>'+ '</td>';
+            result += '<td>' + rule['rfc'] + '</td>';
+            result += '<td>' + rule['description'] + '</td>';
+            result += '<td>' + rule['protocol'] + '</td>';
+            result += '<td>' + rule['service'] + '</td>';
+            result += '<td>' + rule['source-port'] + '</td>';
+            result += '<td>' + rule['source-description'] + '</td>';
+            result += '<td>' + rule['source-application'] + '</td>';
+            result += '<td>' + rule['destination-port'] + '</td>';
+            result += '<td>' + rule['destination-description'] + '</td>';
+            result += '<td>' + rule['destination-application'] + '</td>';
+
+            result += '<tr>';
+        }
+        result += '</table>'
+
+        return result;
+    }
 
     window.setTimeout(function () {
         for (var i = 100; i < app.data['firewall-rules'].length; i++) {

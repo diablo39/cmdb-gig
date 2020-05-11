@@ -14,6 +14,8 @@ import os
 import ipaddress
 import datetime
 
+from itertools import groupby
+
 # %%
 workingDirectory = sys.argv[1]
 if( workingDirectory[-1] != "/" ):
@@ -134,6 +136,27 @@ for vlan in resultDocument['vlans']:
     del vlan['machines']
     del vlan['outgoing-traffic']
     del vlan['incoming-traffic']
+
+# %% process firewall rules
+grouppedFirewallRules = []
+rulesSortedBySource = sorted(resultDocument['firewall-rules'], key=lambda x: x['source-ipv4'])
+                                
+for source, sourceG in groupby(rulesSortedBySource, lambda x: x['source-ipv4'] ):
+    rulesSortedByDestination = sorted(sourceG, key=lambda x: x['destination-ipv4'])
+    for destication, destinationG in groupby(rulesSortedByDestination, lambda y: y['destination-ipv4']) :
+        destinations = list(destinationG)
+        grouppedFirewallRules.append(
+            {
+                'source-ipv4': source,
+                'source-host': '',
+                'source-env': destinations[0]['source-env'],
+                'destination-ipv4':destication, 
+                'destination-host':'',
+                'destination-env': destinations[0]['destination-env'],
+                'rules': destinations  
+            })
+
+resultDocument['firewall-rules'] = grouppedFirewallRules        
 
 # %% save results
 resultPath = outputDirectory+"cmdb.json"
