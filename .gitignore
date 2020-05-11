@@ -351,4 +351,4 @@ MigrationBackup/
 
 
 package-lock.json
-src/data-processors/.spyproject/config/workspace.ini
+**/.spyproject/config/
