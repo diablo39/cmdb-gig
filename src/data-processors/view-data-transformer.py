@@ -28,7 +28,7 @@ if( outputDirectory[-1] != "/" ):
     
 # %% set result document structure
 resultDocument = dict()
-resultDocument['generated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+resultDocument['generated'] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 resultDocument['env'] = []
 resultDocument['machines'] = []
 resultDocument['vlans'] = []

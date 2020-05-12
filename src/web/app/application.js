@@ -130,7 +130,7 @@ $.get("./app/data/manifest.json?c=" + new Date().getTime(), function (manifest) 
     $.get("./app/data/cmdb.json?c=" + manifest.hash, function (data) {
         app.data = postProcessData(data);
 
-        $('#data-generated').text(app.data['generated']);
+        $('#data-generated').text(new Date(app.data['generated']).toLocaleString());
 
         app.run('#/');
     }, 'json').fail(function () {
