@@ -1,3 +1,8 @@
+<style>
+    .no-filter input {
+        display: none;
+    }
+</style>
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -60,16 +65,27 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>FQDN</th>
                             <th>Environment</th>
                             <th>Group</th>
                             <th>vCPU</th>
                             <th>Memory</th>
                             <th>Operating system</th>
-                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>FQDN</th>
+                            <th>Environment</th>
+                            <th>Group</th>
+                            <th>vCPU</th>
+                            <th>Memory</th>
+                            <th>Operating system</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -98,6 +114,18 @@
                     <tbody>
 
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th style="width: 30px" class="no-filter"></th>
+                            <th>Scope</th>
+                            <th>RFC</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </tfoot>
                 </table>
 
             </div>
@@ -114,7 +142,7 @@
                 <table id="outgoingTraffic" class="mytable table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 30px"></th>
+                            <th style="width: 30px" class="no-filter"></th>
                             <th>Scope</th>
                             <th>RFC</th>
                             <th>Protocol</th>
@@ -127,6 +155,18 @@
                     <tbody>
 
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th style="width: 30px" class="no-filter"></th>
+                            <th>Scope</th>
+                            <th>RFC</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </tfoot>
                 </table>
 
             </div>
@@ -134,6 +174,10 @@
     </div>
 </div>
 <script>
+    $('#outgoingTraffic tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" class="form-control form-control-sm" placeholder="Search ' + title + '" />');
+    });
     $('#outgoingTraffic').DataTable({
         data: window.app.currentItem['outgoing-traffic'],
         columns: [
@@ -180,8 +224,25 @@
         rowGroup: {
             dataSrc: 'scope'
         },
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change clear', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
     });
 
+    $('#incomingTraffic tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" class="form-control form-control-sm" placeholder="Search ' + title + '" />');
+    });
     $('#incomingTraffic').DataTable({
         data: window.app.currentItem['outgoing-traffic'],
         order: [[1, 'asc']],
@@ -227,24 +288,26 @@
             'colvis',
             'excel',
             'print'
-        ]
+        ],
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change clear', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
     });
 
-    // $('.mytable').DataTable({
-    //     order: [[1, 'asc']],
-    //     rowGroup: {
-    //         dataSrc: 1
-    //     },
-    //     // "columnDefs": [
-    //     //     {
-    //     //         "targets": [ 1 ],
-    //     //         "visible": false,
-    //     //         "searchable": false
-    //     //     }
-    //     // ]
-    // });
-
-
+    $('.machines tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" class="form-control form-control-sm" placeholder="Search ' + title + '" />');
+    });
     $('.machines').DataTable({
         data: window.app.currentItem['machines'],
         columns: [
@@ -253,6 +316,9 @@
                 render: function (data, type, row) {
                     return '<a href="#/machines/' + row['fqdn'] + '">' + data + '</a>';
                 }
+            },
+            {
+                data: 'fqdn'
             },
             {
                 data: 'env',
@@ -279,15 +345,31 @@
                 render: function (data, type, row) {
                     return row['operating-system-distribution'] + ' ' + row['operating-system-version'];
                 }
-            },
-            {
-                data: 'description'
             }
         ],
         buttons: [
             'colvis',
             'excel',
             'print'
-        ]
+        ],
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change clear', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
     });
+
+    $('#outgoingTraffic tfoot tr').appendTo('#outgoingTraffic thead');
+
+    $('#incomingTraffic tfoot tr').appendTo('#incomingTraffic thead');
+
+    $('.machines tfoot tr').appendTo('.machines thead');
 </script>

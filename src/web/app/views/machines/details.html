@@ -1,3 +1,9 @@
+<style>
+    .no-filter input {
+        display: none;
+    }
+</style>
+
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -10,7 +16,7 @@
         </div>
         <div class="page-title-actions">
             <button type="button" title="Go Back" class="btn-shadow mr-3 btn btn-info"
-                    onclick="window.location='#/machines'">
+                onclick="window.location='#/machines'">
                 <i class="fa fa-arrow-left"></i> To List
             </button>
         </div>
@@ -69,7 +75,7 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Network interfaces</h5>
-        
+
                 <table class="mb-0 table table-hover">
                     <thead>
                         <tr>
@@ -79,7 +85,7 @@
                             <th>IP Address</th>
                             <th>Netmask</th>
                             <th>Network</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -95,7 +101,7 @@
                         {{/network-interfaces}}
                     </tbody>
                 </table>
-      
+
             </div>
         </div>
     </div>
@@ -135,8 +141,8 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Incoming traffic</h5>
-        
-                <table class="mytable table table-striped" style="width:100%">
+
+                <table id="in" class="mytable table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width: 30px"></th>
@@ -152,31 +158,44 @@
                     <tbody>
                         {{#incoming-traffic}}
                         <tr>
-                            <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a></td>
+                            <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i
+                                        class="fa fas fa-arrow-right"></i></a></td>
                             <td>{{scope}}</td>
                             <td>{{rfc}}</td>
                             <td>{{protocol}}</td>
                             <td>{{service}}</td>
                             <td>{{description}}</td>
                             <td>
-                                <span title="Source environment">{{source-env}}</span><br/>
-                                {{source-application}}<br/>
-                                {{source-ipv4}}<br/>
-                                {{source-port}}<br/>
+                                <span title="Source environment">{{source-env}}</span><br />
+                                {{source-application}}<br />
+                                {{source-ipv4}}<br />
+                                {{source-port}}<br />
                                 {{source-description}}
                             </td>
                             <td>
-                                {{destination-env}}<br/>
-                                {{destination-application}}<br/>
-                                {{destination-ipv4}}<br/>
-                                {{destination-port}}<br/>
+                                {{destination-env}}<br />
+                                {{destination-application}}<br />
+                                {{destination-ipv4}}<br />
+                                {{destination-port}}<br />
                                 {{destination-description}}
                             </td>
                         </tr>
                         {{/incoming-traffic}}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th style="width: 30px" class="no-filter"></th>
+                            <th>Scope</th>
+                            <th>RFC</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </tfoot>
                 </table>
-      
+
             </div>
         </div>
     </div>
@@ -187,8 +206,8 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Outgoing traffic</h5>
-        
-                <table class="mytable table table-striped" style="width:100%">
+
+                <table id="out" class="mytable table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width: 30px"></th>
@@ -204,47 +223,74 @@
                     <tbody>
                         {{#outgoing-traffic}}
                         <tr>
-                            <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a></td>
+                            <td><a href="#/firewall-rules/{{id}}" class="btn btn-success"><i
+                                        class="fa fas fa-arrow-right"></i></a></td>
                             <td>{{scope}}</td>
                             <td>{{rfc}}</td>
                             <td>{{protocol}}</td>
                             <td>{{service}}</td>
                             <td>{{description}}</td>
                             <td>
-                                <span title="Source environment">{{source-env}}</span><br/>
-                                {{source-application}}<br/>
-                                {{source-ipv4}}<br/>
-                                {{source-port}}<br/>
+                                <span title="Source environment">{{source-env}}</span><br />
+                                {{source-application}}<br />
+                                {{source-ipv4}}<br />
+                                {{source-port}}<br />
                                 {{source-description}}
                             </td>
                             <td>
-                                {{destination-env}}<br/>
-                                {{destination-application}}<br/>
-                                {{destination-ipv4}}<br/>
-                                {{destination-port}}<br/>
+                                {{destination-env}}<br />
+                                {{destination-application}}<br />
+                                {{destination-ipv4}}<br />
+                                {{destination-port}}<br />
                                 {{destination-description}}
                             </td>
                         </tr>
                         {{/outgoing-traffic}}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th style="width: 30px" class="no-filter"></th>
+                            <th>Scope</th>
+                            <th>RFC</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                        </tr>
+                    </tfoot>
                 </table>
-      
+
             </div>
         </div>
     </div>
 </div>
 <script>
+    $('.mytable tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" class="form-control form-control-sm" placeholder="Search ' + title + '" />');
+    });
+
     $('.mytable').DataTable({
         order: [[1, 'asc']],
         rowGroup: {
             dataSrc: 1
         },
-        // "columnDefs": [
-        //     {
-        //         "targets": [ 1 ],
-        //         "visible": false,
-        //         "searchable": false
-        //     }
-        // ]
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change clear', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
     });
+
+    $('#in tfoot tr').appendTo('#in thead');
+    $('#out tfoot tr').appendTo('#out thead');
 </script>
