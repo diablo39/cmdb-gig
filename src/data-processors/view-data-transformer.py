@@ -57,6 +57,7 @@ for firewallRule in resultDocument['firewall-rules']:
                 
 # %% index vlans by network & create list/details for vlans
 vlansByNetwork = dict()
+firewallhosts = dict()
 
 for vlan in resultDocument['vlans']:
     network = ipaddress.ip_network(vlan['cidr']).network_address
@@ -65,7 +66,9 @@ for vlan in resultDocument['vlans']:
     vlan['machines'] = []
     vlan['outgoing-traffic'] = []
     vlan['incoming-traffic'] = []
-
+    vlan['vlan'] = "{:0>3d}".format(vlan['vlan'])
+    firewallhosts[vlan['cidr']] = "VLAN:" + vlan['vlan']
+    
 # %% generate machine details
 machinesList = []
 machinesDetails = resultDocument['machines']
@@ -90,6 +93,7 @@ for machine in machinesDetails:
     for networkInterface in machine['network-interfaces']:
         
         network = networkInterface['ipv4-network']
+        firewallhosts[networkInterface['ipv4-address']] = machine.get('fqdn')
         if network in vlansByNetwork :
             currentVlan = vlansByNetwork[network]
             
@@ -148,10 +152,10 @@ for source, sourceG in groupby(rulesSortedBySource, lambda x: x['source-ipv4'] )
         grouppedFirewallRules.append(
             {
                 'source-ipv4': source,
-                'source-host': '',
+                'source-host': firewallhosts.get(source),
                 'source-env': destinations[0]['source-env'],
                 'destination-ipv4':destication, 
-                'destination-host':'',
+                'destination-host':firewallhosts.get(destication),
                 'destination-env': destinations[0]['destination-env'],
                 'rules': destinations  
             })

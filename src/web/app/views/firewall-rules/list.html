@@ -35,10 +35,10 @@
                     <thead>
                         <tr>
                             <th style="width: 25px;"></th>
-                            <!-- <th>Source host</th> -->
+                            <th>Source host</th>
                             <th>Source IP</th>
                             <th>Source Env</th>
-                            <!-- <th>Destination host</th> -->
+                            <th>Destination host</th>
                             <th>Destination IP</th>
                             <th>Destination Env</th>
                             <th></th>
@@ -48,10 +48,10 @@
                     <tfoot>
                         <tr>
                             <th style="width: 25px; " class="no-filter"></th>
-                            <!-- <th>Source host</th> -->
+                            <th>Source host</th>
                             <th>Source IP</th>
                             <th>Source Env</th>
-                            <!-- <th>Destination host</th> -->
+                            <th>Destination host</th>
                             <th>Destination IP</th>
                             <th>Destination Env</th>
                             <th></th>
@@ -71,7 +71,8 @@
 
     var table = $('#table').DataTable({
         data: data,
-        order: [[1, 'asc']],
+        "ordering": false,
+        // order: [[1, 'asc']],
         columns: [
             {
                 "className": 'details-control',
@@ -82,10 +83,10 @@
                     return '<i class="fas fa-plus show"></i><i class="fas fa-minus hide"></i>'
                 }
             },
-            // { data: 'source-host' },
+            { data: 'source-host' },
             { data: 'source-ipv4' },
             { data: 'source-env' },
-            // { data: 'destination-host' },
+            { data: 'destination-host' },
             { data: 'destination-ipv4' },
             { data: 'destination-env' },
             {
@@ -93,52 +94,21 @@
                 "visible": false,
                 "render": function(data, type, row) {
                     var result = "";
-                    for(var rule in row['rules']) {
-                        result += " " + row['rules'][rule]['destination-port'] + " ";
-                        result += " " + row['rules'][rule]['destination-description'] + " ";
-                        result += " " + row['rules'][rule]['destination-application'] + " ";
-                        result += " " + row['rules'][rule]['source-port'] + " ";
-                        result += " " + row['rules'][rule]['source-description'] + " ";
-                        result += " " + row['rules'][rule]['source-application'] + " ";
-                        result += " " + row['rules'][rule]['rfc'] + " ";
-                        result += " " + row['rules'][rule]['description'] + " ";
-                    }
+                    // for(var rule in row['rules']) {
+                    //     result += " " + row['rules'][rule]['destination-port'] + " ";
+                    //     result += " " + row['rules'][rule]['destination-description'] + " ";
+                    //     result += " " + row['rules'][rule]['destination-application'] + " ";
+                    //     result += " " + row['rules'][rule]['source-port'] + " ";
+                    //     result += " " + row['rules'][rule]['source-description'] + " ";
+                    //     result += " " + row['rules'][rule]['source-application'] + " ";
+                    //     result += " " + row['rules'][rule]['rfc'] + " ";
+                    //     result += " " + row['rules'][rule]['description'] + " ";
+                    //     result += " " + row['rules'][rule]['service'] + " ";
+                    // }
 
                     return result;
                 }
             }
-            // {
-            //     data: 'id',
-            //     render: function (data, type, row) {
-            //         return '<a href="#/firewall-rules/' + data + '" class="btn btn-success"><i class="fa fas fa-arrow-right"></i></a>'
-            //     }
-            // },
-            // { data: 'rfc' },
-            // { data: 'description' },
-            // { data: 'service' },
-            // { data: 'protocol' },
-            // {
-            //     data: 'null',
-            //     render: function (data, type, rule) {
-
-            //         return '<span>' + rule['source-env']             + '</span></br>'
-            //              + '<span>' + rule['source-application']           + '</span></br>'
-            //              + '<span>' + rule['source-ipv4']            + '</span></br>'
-            //              + '<span>' + rule['source-port']              + '</span></br>'
-            //              + '<span>' + rule['source-description']     + '</span></br>';
-            //     }
-            // },
-            // {
-            //     data: 'null',
-            //     render: function (data, type, rule) {
-
-            //         return '<span>' + rule['destination-env']            + '</span></br>'
-            //              + '<span>' + rule['destination-application']    + '</span></br>'
-            //              + '<span>' + rule['destination-ipv4']           + '</span></br>'
-            //              + '<span>' + rule['destination-port']           + '</span></br>'
-            //              + '<span>' + rule['destination-description']    + '</span></br>';
-            //     }
-            // }
         ],
         buttons: [
             'colvis',
@@ -203,8 +173,10 @@
         return result;
     }
 
+    $('#table tfoot tr').appendTo('#table thead');
+    
     window.setTimeout(function () {
-        for (var i = 100; i < app.data['firewall-rules'].length; i++) {
+        for (var i = data.length; i < app.data['firewall-rules'].length; i++) {
 
             table.row.add(app.data['firewall-rules'][i]);
         }
@@ -212,7 +184,7 @@
         table.draw();
     }, 0);
 
-    $('#table tfoot tr').appendTo('#table thead');
+    
 
     // table.columns().flatten().each(function (colIdx) {
     //     // Create the select list and search operation

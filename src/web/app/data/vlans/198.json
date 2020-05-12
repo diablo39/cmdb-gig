@@ -1,1 +1,1 @@
-{"name": "[WTF] VLAN: 198", "vlan": 198, "alias": null, "cidr": "192.168.198.0/27", "description": "Vlan for some mysterious machines", "env": "WTF", "machines": [], "outgoing-traffic": [], "incoming-traffic": []}
+{"name": "[WTF] VLAN: 198", "vlan": "198", "alias": null, "cidr": "192.168.198.0/27", "description": "Vlan for some mysterious machines", "env": "WTF", "machines": [], "outgoing-traffic": [], "incoming-traffic": []}
