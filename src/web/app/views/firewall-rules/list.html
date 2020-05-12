@@ -94,17 +94,17 @@
                 "visible": false,
                 "render": function(data, type, row) {
                     var result = "";
-                    // for(var rule in row['rules']) {
-                    //     result += " " + row['rules'][rule]['destination-port'] + " ";
-                    //     result += " " + row['rules'][rule]['destination-description'] + " ";
-                    //     result += " " + row['rules'][rule]['destination-application'] + " ";
-                    //     result += " " + row['rules'][rule]['source-port'] + " ";
-                    //     result += " " + row['rules'][rule]['source-description'] + " ";
-                    //     result += " " + row['rules'][rule]['source-application'] + " ";
-                    //     result += " " + row['rules'][rule]['rfc'] + " ";
-                    //     result += " " + row['rules'][rule]['description'] + " ";
-                    //     result += " " + row['rules'][rule]['service'] + " ";
-                    // }
+                    for(var rule in row['rules']) {
+                        result += " " + row['rules'][rule]['destination-port'] + " ";
+                        result += " " + row['rules'][rule]['destination-description'] + " ";
+                        result += " " + row['rules'][rule]['destination-application'] + " ";
+                        result += " " + row['rules'][rule]['source-port'] + " ";
+                        result += " " + row['rules'][rule]['source-description'] + " ";
+                        result += " " + row['rules'][rule]['source-application'] + " ";
+                        result += " " + row['rules'][rule]['rfc'] + " ";
+                        result += " " + row['rules'][rule]['description'] + " ";
+                        result += " " + row['rules'][rule]['service'] + " ";
+                    }
 
                     return result;
                 }
