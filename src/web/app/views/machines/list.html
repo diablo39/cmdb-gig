@@ -17,17 +17,28 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>FQDN</th>
                             <th>Environment</th>
                             <th>Group</th>
                             <th>vCPU</th>
                             <th>Memory</th>
                             <th>Operating system</th>
-                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
 
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>FQDN</th>
+                            <th>Environment</th>
+                            <th>Group</th>
+                            <th>vCPU</th>
+                            <th>Memory</th>
+                            <th>Operating system</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -35,6 +46,11 @@
 </div>
 
 <script>
+    $('#table tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" class="form-control form-control-sm" placeholder="Search '+title+'" />' );
+    } );
+
     $('#table').DataTable({
         data: app.data['machines'],
         columns: [
@@ -43,6 +59,9 @@
                 render: function (data, type, row) {
                     return '<a href="#/machines/' + row['fqdn'] + '">' + data + '</a>';
                 }
+            },
+            {
+                data: 'fqdn'
             },
             {
                 data: 'env',
@@ -69,15 +88,27 @@
                 render: function (data, type, row) {
                     return row['operating-system-distribution'] + ' ' + row['operating-system-version'];
                 }
-            },
-            {
-                data: 'description'
             }
         ],
         buttons: [
             'colvis',
             'excel',
             'print'
-        ]
+        ],
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {                
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
     });
+
+    $('#table tfoot tr').appendTo('#table thead');
 </script>

@@ -10,6 +10,10 @@
     tr.shown td.details-control i.hide {
         display: inherit;
     }
+
+    .no-filter input {
+        display: none;
+    }
 </style>
 
 <div class="app-page-title">
@@ -41,13 +45,28 @@
                         </tr>
                     </thead>
                     <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th style="width: 25px; " class="no-filter"></th>
+                            <!-- <th>Source host</th> -->
+                            <th>Source IP</th>
+                            <th>Source Env</th>
+                            <!-- <th>Destination host</th> -->
+                            <th>Destination IP</th>
+                            <th>Destination Env</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
 </div>
 <script>
-
+    $('#table tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" class="form-control form-control-sm" placeholder="Search ' + title + '" />');
+    });
     var data = app.data['firewall-rules'].slice(0, 100);
 
     var table = $('#table').DataTable({
@@ -125,7 +144,20 @@
             'colvis',
             'excel',
             'print'
-        ]
+        ],
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change clear', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
     });
 
     // Add event listener for opening and closing details
@@ -180,7 +212,7 @@
         table.draw();
     }, 0);
 
-
+    $('#table tfoot tr').appendTo('#table thead');
 
     // table.columns().flatten().each(function (colIdx) {
     //     // Create the select list and search operation
