@@ -148,7 +148,7 @@
     function format(d) {
         // `d` is the original data object for the row
         var result = '<table class="table table-striped">';
-        result += "<thead><tr><th>RFC</th><th>Description</th><th>Protocol</th><th>Service</th><th>Src port</th><th>Src description</th><th>Src Application</th><th>Dest port</th><th>Dest description</th><th>Dest application</th></tr></thead>"
+        result += "<thead><tr><th></th><th>RFC</th><th>Description</th><th>Protocol</th><th>Service</th><th>Src port</th><th>Src description</th><th>Src Application</th><th>Dest port</th><th>Dest description</th><th>Dest application</th></tr></thead>"
         for (var i = 0; i < d['rules'].length; i++) {
             var rule = d.rules[i];
             result += '<tr>';
