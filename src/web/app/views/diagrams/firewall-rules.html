@@ -1,0 +1,173 @@
+<!-- <div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div style="text-align: center;">
+                    <h1>Welcome!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<style type="text/css">
+    #mynetwork {
+        height: 600px;
+        border: 1px solid lightgray;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <select id="env-source" class="form-control">
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6">
+                        <select id="env-destination" class="form-control">
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="mynetwork"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var network = null;
+    var env = app.data["env"];
+
+    for (var i = 0; i < env.length; i++) {
+        $('#env-source').append('<option value="' + env[i].name + '">' + env[i].description + '</option>')
+        $('#env-destination').append('<option value="' + env[i].name + '">' + env[i].description + '</option>')
+    }
+
+    function filter() {
+        var sourceEnv = $("#env-source").val();
+        var destinationEnv = $("#env-destination").val();
+        draw(sourceEnv, destinationEnv);
+    }
+
+    $("#env-source").change(filter);
+    $("#env-destination").change(filter);
+
+
+    // Called when the Visualization API is loaded.
+    function draw(sourceEnv = "", destinationEnv = "") {
+
+        if (network) network.destroy();
+
+        // Create a data table with nodes.
+        var nodes = [];
+        var nodeIndexes = []
+        // Create a data table with links.
+        var edges = [];
+
+        for (var i = 0; i < app.data['firewall-rules'].length; i++) {
+            var firewallRule = app.data['firewall-rules'][i];
+
+            if (sourceEnv != "" && sourceEnv != firewallRule['source-env']) continue;
+            if (destinationEnv != "" && destinationEnv != firewallRule['destination-env']) continue;
+
+            var sourceId = firewallRule['source-ipv4'];
+            if (nodeIndexes.findIndex(function (item) { return item == sourceId }) == -1) {
+                nodeIndexes.push(sourceId);
+                var node = { id: sourceId, label: firewallRule['source-host'], sourceEnv: firewallRule['source-env'] };
+                if (node.label.indexOf("VLAN") != -1) {
+                    node.group = "VLAN";
+                    node.shape= 'image';
+                    node.image = "/assets/images/vlan.png"
+                } else {
+                    node.group = "Machine";
+                    node.shape= 'image';
+                    node.image = "/assets/images/server.png"
+                }
+                nodes.push(node);
+            }
+
+            var destinationId = firewallRule['destination-ipv4'];
+            if (nodeIndexes.findIndex(function (item) { return item == destinationId }) == -1) {
+                nodeIndexes.push(destinationId);
+                var node = { id: destinationId, label: firewallRule['destination-host'] };
+                if (node.label.indexOf("VLAN") != -1) {
+                    node.group = "VLAN";
+                    node.shape= 'image';
+                    node.image = "/assets/images/vlan.png"
+                } else {
+                    node.group = "Machine";
+                    node.shape= 'image';
+                    node.image = "/assets/images/server.png"
+                }
+                nodes.push(node);
+            }
+
+            edges.push({ from: sourceId, to: destinationId });
+        }
+
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var options = {};
+        if (nodes.length > 200) {
+
+            options = {
+                interaction: {
+                    hideEdgesOnDrag: true,
+                    tooltipDelay: 200
+                },
+                physics: {
+                    enabled: false
+                },
+                layout: {
+                    randomSeed: 191006,
+                    improvedLayout: false
+                }
+            };
+        }
+        else {
+            options = {
+                // edges: {
+                //     arrows: {
+                //         to: {
+                //             enabled: true
+                //         }
+                //     },
+                //     smooth: {
+                //         enabled: false,
+                //         type: 'continuous'
+                //     }
+                // },
+                // physics: {
+                //     adaptiveTimestep: true,
+                //     barnesHut: {
+                //         gravitationalConstant: -8000,
+                //         springConstant: 0.04,
+                //         springLength: 95
+                //     },
+                //     stabilization: {
+                //         iterations: 987
+                //     }
+                // },
+                layout: {
+                    randomSeed: 191006,
+                    improvedLayout: false
+                }
+            };
+        }
+
+        network = new vis.Network(container, data, options);
+    }
+
+    draw();
+</script>
