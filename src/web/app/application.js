@@ -113,6 +113,11 @@ window.app = Sammy('#main', function () {
         activateMenu('#/soon');
     });
 
+    this.get("#/diagrams/firewall-rules", function () {
+        this.render('./app/views/diagrams/firewall-rules.html' + this.app.qs(true), {}).swap();
+        activateMenu('#/diagrams/firewall-rules');
+    });
+
 });
 
 window.app.qs = function (template) {
