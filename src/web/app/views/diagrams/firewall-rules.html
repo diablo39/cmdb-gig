@@ -80,8 +80,8 @@
             var sourceId = firewallRule['source-ipv4'];
             if (nodeIndexes.findIndex(function (item) { return item == sourceId }) == -1) {
                 nodeIndexes.push(sourceId);
-                var node = { id: sourceId, label: firewallRule['source-host'], sourceEnv: firewallRule['source-env'] };
-                if (node.label.indexOf("VLAN") != -1) {
+                var node = { id: sourceId, label: firewallRule['source-host'] ? firewallRule['source-host'] : sourceId };
+                if (sourceId.indexOf("/") != -1) {
                     node.group = "VLAN";
                     node.shape= 'image';
                     node.image = "/assets/images/vlan.png"
@@ -96,8 +96,8 @@
             var destinationId = firewallRule['destination-ipv4'];
             if (nodeIndexes.findIndex(function (item) { return item == destinationId }) == -1) {
                 nodeIndexes.push(destinationId);
-                var node = { id: destinationId, label: firewallRule['destination-host'] };
-                if (node.label.indexOf("VLAN") != -1) {
+                var node = { id: destinationId, label: firewallRule['destination-host'] ? firewallRule['destination-host'] : destinationId };
+                if (destinationId.indexOf("/") != -1) {
                     node.group = "VLAN";
                     node.shape= 'image';
                     node.image = "/assets/images/vlan.png"
