@@ -67,7 +67,7 @@ for vlan in resultDocument['vlans']:
     vlan['outgoing-traffic'] = []
     vlan['incoming-traffic'] = []
     vlan['vlan'] = "{:0>3d}".format(vlan['vlan'])
-    firewallhosts[vlan['cidr']] = "VLAN:" + vlan['vlan']
+    firewallhosts[vlan['cidr']] = "VLAN:" + vlan['vlan'] + " " + vlan['name']
     
 # %% generate machine details
 machinesList = []
