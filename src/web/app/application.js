@@ -117,7 +117,17 @@ window.app = Sammy('#main', function () {
         this.render('./app/views/diagrams/firewall-rules.html' + this.app.qs(true), {}).swap();
         activateMenu('#/diagrams/firewall-rules');
     });
+    this.get("#/load-balancers", function () {
+        this.render('./app/views/load-balancers/list.html' + this.app.qs(true), { items: app.data["load-balancers"] }).swap();
+        activateMenu('#/load-balancers');
+    });
 
+    this.get("#/load-balancers/:name", function () {
+        var name = this.params['name'];
+        var item = getItem(app.data["load-balancers"], 'name', name);
+        this.render('./app/views/load-balancers/details.html' + this.app.qs(true), item).swap();
+        activateMenu('#/load-balancers');
+    });
 });
 
 window.app.qs = function (template) {
