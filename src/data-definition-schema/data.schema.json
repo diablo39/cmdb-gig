@@ -23,7 +23,16 @@
                 ]
             }
         },
-        "load-balancers": {}
+        "load-balancers":  {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/LoadBalancer"
+                    }
+                ]
+            }
+        }
     },
     "definitions": {
         "Vlan": {
@@ -206,7 +215,7 @@
                 "name": {},
                 "description": {},
                 "ip-v4": {},
-                "pools": {
+                "member-pools": {
                     "type": "array",
                     "items": {
                         "anyOf": [

@@ -35,6 +35,7 @@ resultDocument['vlans'] = []
 resultDocument['firewall-rules'] = []
 resultDocument['machine-groups'] = []
 resultDocument['redis'] = []
+resultDocument['load-balancers'] = []
 
 # %% get all inventory files
 inventoryFiles = glob.glob(workingDirectory + "**/*.yaml", recursive=True)
