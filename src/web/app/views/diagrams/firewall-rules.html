@@ -46,8 +46,8 @@
     var env = app.data["env"];
 
     for (var i = 0; i < env.length; i++) {
-        $('#env-source').append('<option value="' + env[i].name + '">' + env[i].description + '</option>')
-        $('#env-destination').append('<option value="' + env[i].name + '">' + env[i].description + '</option>')
+        $('#env-source').append('<option value="' + env[i].name + '" title="'+ env[i].description +'">' + env[i].name + '</option>')
+        $('#env-destination').append('<option value="' + env[i].name + '" title="'+ env[i].description +'">' + env[i].name + '</option>')
     }
 
     function filter() {
@@ -61,7 +61,7 @@
 
 
     // Called when the Visualization API is loaded.
-    function draw(sourceEnv = "", destinationEnv = "") {
+    function draw(sourceEnv, destinationEnv ) {
 
         if (network) network.destroy();
 
@@ -174,5 +174,5 @@
         });
     }
 
-    draw();
+    draw("", "");
 </script>
