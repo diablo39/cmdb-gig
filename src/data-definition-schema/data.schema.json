@@ -22,7 +22,8 @@
                     }
                 ]
             }
-        }
+        },
+        "load-balancers": {}
     },
     "definitions": {
         "Vlan": {
@@ -194,6 +195,66 @@
                     "type": "string"
                 },
                 "destination-port": {
+                    "type": "string"
+                }
+            }
+        },
+        "LoadBalancer": {
+            "type": "object",
+            "properties": {
+                "port": {},
+                "name": {},
+                "description": {},
+                "ip-v4": {},
+                "pools": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/LoadBalancerPool"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "LoadBalancerPool": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "balancing": {
+                    "type": "string"
+                },
+                "monitor": {
+                    "type": "string"
+                },
+                "members": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/LoadBalancerPoolMember"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "LoadBalancerPoolMember": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "ip-v4": {
                     "type": "string"
                 }
             }
