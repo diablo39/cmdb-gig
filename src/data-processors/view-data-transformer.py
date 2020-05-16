@@ -143,8 +143,9 @@ for vlan in resultDocument['vlans']:
     del vlan['incoming-traffic']
 
 # %%
+
 for lb in resultDocument['load-balancers'] :
-    firewallhosts[lb['ip-v4']] = "LB: " + lb['name']
+    firewallhosts[lb['ip-v4']] = "LB: " + lb.get('name') if lb.get('name') else lb['ip-v4']
 
 # %% process firewall rules
 grouppedFirewallRules = []
