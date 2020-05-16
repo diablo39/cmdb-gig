@@ -85,6 +85,10 @@
                     node.group = "VLAN";
                     node.shape= 'image';
                     node.image = "/assets/images/vlan.png"
+                } else if (node.label.indexOf("LB:") != -1) {
+                    node.group = "LB";
+                    node.shape= 'image';
+                    node.image = "/assets/images/lb.png"
                 } else {
                     node.group = "Machine";
                     node.shape= 'image';
@@ -101,7 +105,11 @@
                     node.group = "VLAN";
                     node.shape= 'image';
                     node.image = "/assets/images/vlan.png"
-                } else {
+                } else if (node.label.indexOf("LB:") != -1) {
+                    node.group = "LB";
+                    node.shape= 'image';
+                    node.image = "/assets/images/lb.png"
+                } else  {
                     node.group = "Machine";
                     node.shape= 'image';
                     node.image = "/assets/images/server.png"
