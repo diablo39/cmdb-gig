@@ -142,6 +142,10 @@ for vlan in resultDocument['vlans']:
     del vlan['outgoing-traffic']
     del vlan['incoming-traffic']
 
+# %%
+for lb in resultDocument['load-balancers'] :
+    firewallhosts[lb['ip-v4']] = "LB: " + lb['name']
+
 # %% process firewall rules
 grouppedFirewallRules = []
 rulesSortedBySource = sorted(resultDocument['firewall-rules'], key=lambda x: x['source-ipv4'])

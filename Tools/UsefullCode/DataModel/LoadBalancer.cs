@@ -4,7 +4,11 @@ using System.Text;
 
 namespace UsefullCode.DataModel
 {
-    class LoadBalancer
+    public class LoadBalancer
     {
+        public string port { get; set; }
+
+        
+
     }
 }
