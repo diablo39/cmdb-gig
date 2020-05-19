@@ -14,12 +14,20 @@
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="./assets/libs/dataTables/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="./assets/libs/dataTables/rowGroup.dataTables.min.css">
-    <!-- <link rel="stylesheet" href="./assets/libs/vis/4.21.0/vis.min.css" /> -->
+
     <style>
         tfoot input {
             width: 100%;
             padding: 3px;
             box-sizing: border-box;
+        }
+        .dt-buttons { margin-right: 25px;}
+        .dt-buttons, .dataTables_length {
+            float: left;
+        }
+
+        div.dataTables_wrapper div.dataTables_filter input  {
+            width: 300px;
         }
     </style>
     
@@ -233,6 +241,11 @@
     <script type="text/javascript" src="./assets/libs/dataTables/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="./assets/libs/dataTables/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="./assets/libs/dataTables/dataTables.rowGroup.min.js"></script>
+    <script type="text/javascript" src="./assets/libs/dataTables/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="./assets/libs/dataTables/jszip.min.js"></script>
+    <script type="text/javascript" src="./assets/libs/dataTables/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="./assets/libs/dataTables/pdfmake.min.js"></script>
+    <script type="text/javascript" src="./assets/libs/dataTables/vfs_fonts.js"></script>
     <script>
 
         $(document).ready(function() {

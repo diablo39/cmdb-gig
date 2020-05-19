@@ -288,7 +288,30 @@
                     }
                 });
             });
-        }
+        },
+        dom: 'Blfrtip',
+        buttons: [
+        {
+                extend: 'copyHtml5',
+                messageTop: null,
+                className: "btn-shadow btn btn-info"
+            },
+            {
+                extend: 'excelHtml5',
+                messageTop: null,
+                className: "btn-shadow btn btn-info"
+            },
+            {
+                extend: 'csvHtml5',
+                messageTop: null,
+                className: "btn-shadow btn btn-info"
+            },
+            {
+                extend: 'pdfHtml5',
+                messageTop: null,
+                className: "btn-shadow btn btn-info"
+            }
+        ]
     });
 
     $('#in tfoot tr').appendTo('#in thead');
