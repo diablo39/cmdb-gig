@@ -41,6 +41,7 @@
                             <th>Destination host</th>
                             <th>Destination IP</th>
                             <th>Destination Env</th>
+                            <th>Destination ports</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -54,6 +55,7 @@
                             <th>Destination host</th>
                             <th>Destination IP</th>
                             <th>Destination Env</th>
+                            <th>Destination ports</th>
                             <th></th>
                         </tr>
                     </tfoot>
@@ -89,6 +91,7 @@
             { data: 'destination-host' },
             { data: 'destination-ipv4' },
             { data: 'destination-env' },
+            { data: 'destination-ports' },
             {
                 "data": null,
                 "visible": false,
@@ -115,22 +118,35 @@
         {
                 extend: 'copyHtml5',
                 messageTop: null,
-                className: "btn-shadow btn btn-info"
+                className: "btn-shadow btn btn-info",
+                exportOptions: {
+                    columns: ':visible'
+                }
             },
             {
                 extend: 'excelHtml5',
                 messageTop: null,
-                className: "btn-shadow btn btn-info"
+                className: "btn-shadow btn btn-info",
+                exportOptions: {
+                    columns: ':visible'
+                },
+                autoFilter: true
             },
             {
                 extend: 'csvHtml5',
                 messageTop: null,
-                className: "btn-shadow btn btn-info"
+                className: "btn-shadow btn btn-info",
+                exportOptions: {
+                    columns: ':visible'
+                }
             },
             {
                 extend: 'pdfHtml5',
                 messageTop: null,
-                className: "btn-shadow btn btn-info"
+                className: "btn-shadow btn btn-info",
+                exportOptions: {
+                    columns: ':visible'
+                }
             }
         ],
         initComplete: function () {
