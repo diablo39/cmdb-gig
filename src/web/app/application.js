@@ -124,9 +124,15 @@ window.app = Sammy('#main', function () {
 
     this.get("#/load-balancers/:name", function () {
         var name = this.params['name'];
+        debugger;
         var item = getItem(app.data["load-balancers"], 'name', name);
         this.render('./app/views/load-balancers/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/load-balancers');
+    });
+
+    this.bind("diagram-edge-clicked", function (event) {
+        debugger;
+        this.render('./app/views/diagrams/edge-details.html' + app.qs(true), this.params).appendTo("#hosts");
     });
 });
 
@@ -169,9 +175,9 @@ function getItem(array, keyName, value) {
     return null;
 }
 
-function getFirewallRule(array,keyName, value) {
-    for(var i=0; i< array.length; i++) {
-        for(var j = 0; j< array[i]['rules'].length; j++) {
+function getFirewallRule(array, keyName, value) {
+    for (var i = 0; i < array.length; i++) {
+        for (var j = 0; j < array[i]['rules'].length; j++) {
             var item = array[i]['rules'][j];
             if (item[keyName] == value) {
                 return item;
