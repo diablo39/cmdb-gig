@@ -124,16 +124,22 @@ window.app = Sammy('#main', function () {
 
     this.get("#/load-balancers/:name", function () {
         var name = this.params['name'];
-        debugger;
         var item = getItem(app.data["load-balancers"], 'name', name);
         this.render('./app/views/load-balancers/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/load-balancers');
     });
 
     this.bind("diagram-edge-clicked", function (event) {
-        debugger;
-        this.render('./app/views/diagrams/edge-details.html' + app.qs(true), this.params).appendTo("#hosts");
+
+        this.render('./app/views/diagrams/edge-details.html' + app.qs(true), this.params).replace("#details");
     });
+    this.bind("diagram-node-clicked", function (event) {
+        this.render('./app/views/diagrams/node-details.html' + app.qs(true), this.params).replace("#details");
+    });
+    this.bind("diagram-diselect", function () {
+        $("#details").html('<div class="main-card mb-3 card"><div class="card-body">Select node or edge.</div></div>');
+    });
+
 });
 
 window.app.qs = function (template) {
