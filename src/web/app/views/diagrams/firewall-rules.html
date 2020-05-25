@@ -237,6 +237,9 @@
         });
         network.on('deselectNode', function (event) {
             app.trigger('diagram-diselect', {});
+            if (event.nodes.length != 0) return;
+            var edge = edges.get(event.edges[0]);
+            app.trigger('diagram-edge-clicked', edge.data);
         });
     }
 
