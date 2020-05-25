@@ -23,6 +23,7 @@
                             <th>vCPU</th>
                             <th>Memory</th>
                             <th>Operating system</th>
+                            <th>Vlans</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,7 @@
                             <th>vCPU</th>
                             <th>Memory</th>
                             <th>Operating system</th>
+                            <th>Vlans</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -46,10 +48,10 @@
 </div>
 
 <script>
-    $('#table tfoot th').each( function () {
+    $('#table tfoot th').each(function () {
         var title = $(this).text();
-        $(this).html( '<input type="text" class="form-control form-control-sm" placeholder="Search '+title+'" />' );
-    } );
+        $(this).html('<input type="text" class="form-control form-control-sm" placeholder="Search ' + title + '" />');
+    });
 
     $('#table').DataTable({
         data: app.data['machines'],
@@ -88,11 +90,23 @@
                 render: function (data, type, row) {
                     return row['operating-system-distribution'] + ' ' + row['operating-system-version'];
                 }
+            },
+            {
+                data: 'vlans',
+                render: function (data, type, row) {
+                    if (data && data.length > 0) {
+                        var result = '';
+                        for (var i = 0; i < data.length; i++)
+                            result += '<a href="#/vlans/' + data[i] + '">' + data[i] + '</a>';
+                        return result;
+                    }
+                    return '';
+                }
             }
         ],
         dom: 'Blfrtip',
         buttons: [
-        {
+            {
                 extend: 'copyHtml5',
                 messageTop: null,
                 className: "btn-shadow btn btn-info"
@@ -115,16 +129,16 @@
         ],
         initComplete: function () {
             // Apply the search
-            this.api().columns().every( function () {
+            this.api().columns().every(function () {
                 var that = this;
-                $( 'input', this.footer() ).on( 'keyup change clear', function () {                
-                    if ( that.search() !== this.value ) {
+                $('input', this.footer()).on('keyup change clear', function () {
+                    if (that.search() !== this.value) {
                         that
-                            .search( this.value )
+                            .search(this.value)
                             .draw();
                     }
-                } );
-            } );
+                });
+            });
         }
     });
 

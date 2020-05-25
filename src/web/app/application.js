@@ -2,7 +2,7 @@
 window.app = Sammy('#main', function () {
     // include a plugin
     this.use('Mustache', 'html');
-
+    // this.swap = function(content, callback) {	    	    var context = this;	    context.$element().fadeOut('fast', function() {	        context.$element().html(content);	        context.$element().fadeIn('slow', function() { 	             if (callback) {	                callback.apply();	             }	         }); 	    });	 };
     this.get('#/', function () {
         this.render('./app/views/home.html', {}).swap();
         activateMenu('#/');
@@ -16,6 +16,7 @@ window.app = Sammy('#main', function () {
     this.get("#/env/:name", function (context) {
         var name = this.params['name'];
         var item = getItem(app.data.env, 'name', name);
+        if(!item) { this.render('./app/views/common/404.html' + this.app.qs(true)).swap(); return; }
         this.render('./app/views/env/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/env');
     });
@@ -38,11 +39,6 @@ window.app = Sammy('#main', function () {
         activateMenu('#/vlans');
     });
 
-    this.get("#/f5-vs", function () {
-        this.render('./app/views/common/soon.html' + this.app.qs(true), {}).swap();
-        activateMenu('#/f5-vs');
-    });
-
     this.get("#/firewall-rules", function (context) {
         this.render('./app/views/firewall-rules/list.html' + this.app.qs(true)).swap();
         activateMenu("#/firewall-rules");
@@ -51,6 +47,7 @@ window.app = Sammy('#main', function () {
     this.get("#/firewall-rules/:name", function (context) {
         var name = this.params['name'];
         var item = getFirewallRule(app.data['firewall-rules'], 'id', name);
+        if(!item) { this.render('./app/views/common/404.html' + this.app.qs(true)).swap(); return; }
         this
             .render('./app/views/firewall-rules/details.html' + this.app.qs(true), item)
             .swap();
@@ -66,6 +63,7 @@ window.app = Sammy('#main', function () {
     this.get("#/machine-templates/:name", function () {
         var name = this.params['name'];
         var item = getItem(app.data["machine-templates"], 'name', name);
+        if(!item) { this.render('./app/views/common/404.html' + this.app.qs(true)).swap(); return; }
         this.render('./app/views/machine-templates/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/machine-groups');
     });
@@ -88,8 +86,6 @@ window.app = Sammy('#main', function () {
         activateMenu('#/machines');
     });
 
-    // this.swap = function(content, callback) {	    	    var context = this;	    context.$element().fadeOut('fast', function() {	        context.$element().html(content);	        context.$element().fadeIn('slow', function() { 	             if (callback) {	                callback.apply();	             }	         }); 	    });	 };
-
     this.get("#/applications", function () {
         this.render('./app/views/common/soon.html' + this.app.qs(true), {}).swap();
         activateMenu('#/applications');
@@ -103,6 +99,7 @@ window.app = Sammy('#main', function () {
     this.get("#/redis/:name", function (context) {
         var name = this.params['name'];
         var item = getItem(app.data.redis, 'name', name);
+        if(!item) { this.render('./app/views/common/404.html' + this.app.qs(true)).swap(); return; }
         this.render('./app/views/redis/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/redis');
     });
@@ -125,6 +122,7 @@ window.app = Sammy('#main', function () {
     this.get("#/load-balancers/:name", function () {
         var name = this.params['name'];
         var item = getItem(app.data["load-balancers"], 'name', name);
+        if(!item) { this.render('./app/views/common/404.html' + this.app.qs(true)).swap(); return; }
         this.render('./app/views/load-balancers/details.html' + this.app.qs(true), item).swap();
         activateMenu('#/load-balancers');
     });
