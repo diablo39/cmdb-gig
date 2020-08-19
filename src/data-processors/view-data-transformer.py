@@ -101,7 +101,7 @@ for machine in machinesDetails:
             
             currentVlan['machines'].append(machineListItem)
             
-            if(not networkInterface['ipv4-cidr']):
+            if(not networkInterface.get('ipv4-cidr')):
                 networkInterface['ipv4-cidr'] = currentVlan['cidr']
             networkInterface['ipv4-vlan'] = currentVlan['vlan']
             machineListItem['vlans'].append(currentVlan['vlan'])
