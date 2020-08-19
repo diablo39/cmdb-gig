@@ -101,7 +101,8 @@ for machine in machinesDetails:
             
             currentVlan['machines'].append(machineListItem)
             
-            networkInterface['ipv4-cidr'] = currentVlan['cidr']
+            if(not networkInterface['ipv4-cidr']):
+                networkInterface['ipv4-cidr'] = currentVlan['cidr']
             networkInterface['ipv4-vlan'] = currentVlan['vlan']
             machineListItem['vlans'].append(currentVlan['vlan'])
             # it will be nice to generate dict of firewall rules
