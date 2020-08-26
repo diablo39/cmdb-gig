@@ -71,7 +71,7 @@ for vlan in resultDocument['vlans']:
     # vlan['vlan'] = "{:0>3d}".format(vlan['vlan'])
     if (not vlan.get('description')):
         vlan['description'] = ''
-    firewallhosts[vlan['cidr']] = "VLAN:" + vlan['vlan'] + " " + vlan['name']
+    firewallhosts[vlan['cidr']] = "VLAN:" + str(vlan['vlan']) + " " + vlan['name']
     
 # %% generate machine details
 machinesList = []
