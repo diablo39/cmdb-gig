@@ -44,7 +44,8 @@ inventoryFiles = glob.glob(workingDirectory + "**/*.yaml", recursive=True)
 for inventoryFile in inventoryFiles:
     with open(inventoryFile) as f:
         inventory = yaml.load(f)
-        
+        if (not isinstance(inventory, dict)):
+            continue
         for key in resultDocument:
             inventoryField = inventory.get(key)
             if inventoryField is not None:
