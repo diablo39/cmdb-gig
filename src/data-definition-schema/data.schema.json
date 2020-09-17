@@ -59,6 +59,9 @@
                 },
                 "env": {
                     "type": "string"
+                },
+                "machines-count": {
+                    "type": "number"
                 }
             }
         },
