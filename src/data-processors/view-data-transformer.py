@@ -90,8 +90,11 @@ for machine in machinesDetails:
     machineListItem['memory'] = machine.get('memory')
     machineListItem['fqdn'] = machine.get('fqdn')
     machineListItem['description'] = machine.get('description')
-    machineListItem['operating-system-distribution'] = machine.get('operating-system-distribution')
-    machineListItem['operating-system-version'] = machine.get('operating-system-version')
+    machineListItem['operating-system'] = machine.get('operating-system')
+    
+    if (not machineListItem['operating-system']):
+        machineListItem['operating-system'] = machine.get('operating-system-distribution') + ' ' + machine.get('operating-system-version')
+
     machineListItem['vlans'] = []
     machinesList.append(machineListItem)
         
