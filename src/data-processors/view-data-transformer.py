@@ -174,7 +174,7 @@ for source, sourceG in groupby(rulesSortedBySource, lambda x: x['source-ipv4'] )
                 'destination-ipv4':destication, 
                 'destination-host':firewallhosts.get(destication),
                 'destination-env': destinations[0].get('destination-env'),
-                'rules': destinations,
+                'rules': [], #destinations,
                 'destination-ports': destinationPortsString
             })
 
