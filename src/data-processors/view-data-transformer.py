@@ -170,10 +170,10 @@ for source, sourceG in groupby(rulesSortedBySource, lambda x: x['source-ipv4'] )
             {
                 'source-ipv4': source,
                 'source-host': firewallhosts.get(source),
-                'source-env': destinations[0]['source-env'],
+                'source-env': destinations[0].get('source-env'),
                 'destination-ipv4':destication, 
                 'destination-host':firewallhosts.get(destication),
-                'destination-env': destinations[0]['destination-env'],
+                'destination-env': destinations[0].get('destination-env'),
                 'rules': destinations,
                 'destination-ports': destinationPortsString
             })
