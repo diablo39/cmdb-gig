@@ -93,7 +93,7 @@ for machine in machinesDetails:
     machineListItem['operating-system'] = machine.get('operating-system')
     
     if (not machineListItem['operating-system']):
-        machineListItem['operating-system'] = machine.get('operating-system-distribution') + ' ' + machine.get('operating-system-version')
+        machineListItem['operating-system'] = machine.get('operating-system-distribution') + ' ' + str(machine.get('operating-system-version'))
 
     machineListItem['vlans'] = []
     machinesList.append(machineListItem)
@@ -163,8 +163,8 @@ for source, sourceG in groupby(rulesSortedBySource, lambda x: x['source-ipv4'] )
     rulesSortedByDestination = sorted(sourceG, key=lambda x: x['destination-ipv4'])
     for destication, destinationG in groupby(rulesSortedByDestination, lambda y: y['destination-ipv4']) :
         destinations = list(destinationG)
-        destinationPorts = map(lambda x: str(x['destination-port']), destinations)
-        destinationPorts = sorted(list(chain.from_iterable(destinationPorts)))
+        destinationPorts = map(lambda x: x['destination-port'], destinations)
+        destinationPorts = list(destinationPorts)
         destinationPortsString = ', '.join(destinationPorts)
         grouppedFirewallRules.append(
             {
