@@ -217,3 +217,10 @@ for vlan in vlanDetails :
 
     with open(vlanPath, 'w') as data_file:
         json.dump(vlan, data_file)   
+
+vlanPath = vlansDirectory + 'all_vlans.json'
+if os.path.exists(vlanPath):
+    os.remove(vlanPath)        
+
+with open(vlanPath, 'w') as data_file:
+    json.dump(vlanDetails, data_file) 
