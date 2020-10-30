@@ -165,7 +165,7 @@ for source, sourceG in groupby(rulesSortedBySource, lambda x: x['source-ipv4'] )
         destinations = list(destinationG)
         destinationPorts = map(lambda x: x['destination-port'], destinations)
         destinationPorts = list(destinationPorts)
-        destinationPortsString = ', '.join(destinationPorts)
+        destinationPortsString = ', '.join(str(destinationPorts))
         grouppedFirewallRules.append(
             {
                 'source-ipv4': source,
@@ -218,7 +218,7 @@ for vlan in vlanDetails :
     with open(vlanPath, 'w') as data_file:
         json.dump(vlan, data_file)   
 
-vlanPath = vlansDirectory + 'all_vlans.json'
+vlanPath = outputDirectory + 'vlans.json'
 if os.path.exists(vlanPath):
     os.remove(vlanPath)        
 
