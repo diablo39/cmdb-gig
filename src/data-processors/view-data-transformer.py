@@ -96,10 +96,12 @@ for machine in machinesDetails:
         machineListItem['operating-system'] = machine.get('operating-system-distribution') + ' ' + str(machine.get('operating-system-version'))
 
     machineListItem['vlans'] = []
+    machineListItem['ip'] = [] # ipv4-address
     machinesList.append(machineListItem)
         
     for networkInterface in machine['network-interfaces']:
         
+        machineListItem['ip'].append(networkInterface['ipv4-address'])
         network = networkInterface['ipv4-network']
         firewallhosts[networkInterface['ipv4-address']] = machine.get('fqdn')
         if network in vlansByNetwork :
@@ -133,7 +135,7 @@ for machine in machinesDetails:
                     cp['scope'] = 'VLAN'
                     machine['incoming-traffic'].append(cp)
                     currentVlan['incoming-traffic'].append(cp)
-                    
+    machineListItem['ip'] = ', '.join(machineListItem['ip'])
 
 
 resultDocument['machines'] = machinesList
