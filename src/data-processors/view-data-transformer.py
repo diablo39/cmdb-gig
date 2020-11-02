@@ -96,6 +96,7 @@ for machine in machinesDetails:
         machineListItem['operating-system'] = machine.get('operating-system-distribution') + ' ' + str(machine.get('operating-system-version'))
 
     machineListItem['vlans'] = []
+    machineListItem['vlans-list'] = []
     machineListItem['ip'] = [] # ipv4-address
     machinesList.append(machineListItem)
         
@@ -112,6 +113,9 @@ for machine in machinesDetails:
             if(not networkInterface.get('ipv4-cidr')):
                 networkInterface['ipv4-cidr'] = currentVlan['cidr']
             networkInterface['ipv4-vlan'] = currentVlan['vlan']
+            
+            vlanLink = {"cidr": networkInterface['ipv4-cidr'], "vlan": networkInterface['ipv4-vlan']}
+            machineListItem['vlans-list'].append(vlanLink)
             machineListItem['vlans'].append(currentVlan['vlan'])
             # it will be nice to generate dict of firewall rules
             for firewallRule in resultDocument['firewall-rules']:
