@@ -171,7 +171,7 @@ for source, sourceG in groupby(rulesSortedBySource, lambda x: x['source-ipv4'] )
         destinations = list(destinationG)
         destinationPorts = map(lambda x: x['destination-port'], destinations)
         destinationPorts = list(destinationPorts)
-        destinationPortsString = ', '.join(str(destinationPorts))
+        destinationPortsString = ', '.join(destinationPorts)
         grouppedFirewallRules.append(
             {
                 'source-ipv4': source,
